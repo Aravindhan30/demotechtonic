@@ -797,50 +797,61 @@
       }
     }
 
-    /* ── Spinning Vortex Title ── */
+    /* ── Anime Energy Title (Ben 10 / ECE Theme) ── */
     .hero-title-container {
       position: relative;
       z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: inline-block;
+      padding: 12px 25px;
     }
 
-    /* Golden vortex spinner */
-    .title-vortex {
+    /* Energy border glow around title */
+    .hero-title-container::before {
+      content: '';
       position: absolute;
-      width: clamp(260px, 55vw, 600px);
-      height: clamp(260px, 55vw, 600px);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(0deg);
-      animation: vortexSpin 12s linear infinite;
-      opacity: 0;
-      pointer-events: none;
-      z-index: 1;
-      will-change: transform;
-      mix-blend-mode: screen;
-      filter: brightness(1.1) saturate(1.2);
+      top: -3px;
+      left: -3px;
+      right: -3px;
+      bottom: -3px;
+      border-radius: 16px;
+      background: linear-gradient(45deg, #00ff41, #d4af37, #00ff41, #ffd700, #00ff41);
+      background-size: 400% 400%;
+      animation: energyBorder 3s ease infinite;
+      opacity: 0.7;
+      z-index: -1;
+      filter: blur(8px);
     }
 
-    .title-vortex img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+    .hero-title-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 14px;
+      background: rgba(0, 0, 0, 0.85);
+      z-index: -1;
     }
 
-    @keyframes vortexSpin {
-      from {
-        transform: translate(-50%, -50%) rotate(0deg);
+    @keyframes energyBorder {
+      0% {
+        background-position: 0% 50%;
+        opacity: 0.5;
       }
 
-      to {
-        transform: translate(-50%, -50%) rotate(360deg);
+      50% {
+        background-position: 100% 50%;
+        opacity: 0.9;
+      }
+
+      100% {
+        background-position: 0% 50%;
+        opacity: 0.5;
       }
     }
 
-    /* Chrome gold gradient title */
-    .hero h1.vfx-title {
+    .hero h1.scratch-title {
       font-family: 'Orbitron', 'Cinzel', serif;
       font-size: clamp(1.8rem, 7vw, 4.5rem);
       font-weight: 900;
@@ -849,26 +860,27 @@
       white-space: nowrap;
       line-height: 1.1;
       letter-spacing: clamp(2px, 1vw, 8px);
+      /* Anime green-gold energy gradient */
       background: linear-gradient(90deg,
-          #b8860b 0%, #ffd700 18%, #fff8dc 35%,
-          #ffd700 50%, #daa520 65%, #ffd700 82%, #b8860b 100%);
+          #00ff41 0%, #39ff14 10%, #d4af37 25%,
+          #ffd700 40%, #fff8dc 50%,
+          #ffd700 60%, #d4af37 75%,
+          #39ff14 90%, #00ff41 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9));
-      z-index: 2;
-      opacity: 0;
+      filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.5)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8));
       transform: translateZ(0);
-      animation: titleShimmer 3s linear infinite;
-      animation-play-state: paused;
+      z-index: 2;
     }
 
-    .vfx-title.shimmer-go {
-      animation-play-state: running;
+    /* Continuous energy shimmer sweep */
+    .scratch-title.shimmer-active {
+      animation: energySweep 2.5s linear infinite;
     }
 
-    @keyframes titleShimmer {
+    @keyframes energySweep {
       0% {
         background-position: 200% center;
       }
@@ -876,6 +888,110 @@
       100% {
         background-position: -200% center;
       }
+    }
+
+    /* Pulsing energy glow on title */
+    .scratch-title.shimmer-active::after {
+      content: 'TECH TONIC 2K26';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      background-size: inherit;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: blur(12px);
+      opacity: 0.4;
+      animation: energyPulse 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes energyPulse {
+
+      0%,
+      100% {
+        opacity: 0.2;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: 0.5;
+        transform: scale(1.02);
+      }
+    }
+
+    /* Scratch overlay (energy cover) */
+    .scratch-overlay {
+      position: absolute;
+      top: -8px;
+      left: -15px;
+      right: -15px;
+      bottom: -8px;
+      z-index: 3;
+      border-radius: 12px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .scratch-overlay-inner {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg,
+          #003d00 0%, #00560a 20%, #00ff41 50%, #00560a 80%, #003d00 100%);
+      background-size: 400% 400%;
+      animation: scratchShine 2s ease infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(0.6rem, 1.8vw, 0.95rem);
+      font-weight: 700;
+      color: rgba(0, 255, 65, 0.8);
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
+    }
+
+    @keyframes scratchShine {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Scratch particles */
+    .scratch-particle {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #00ff41;
+      border-radius: 50%;
+      box-shadow: 0 0 6px #00ff41;
+      pointer-events: none;
+      z-index: 4;
+      opacity: 0;
+    }
+
+    /* CSS scroll-reveal (replaces heavy GSAP on mobile) */
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px) translateZ(0);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .scroll-reveal.visible {
+      opacity: 1;
+      transform: translateY(0) translateZ(0);
     }
 
     /* Animated gradient glass border */
@@ -1523,7 +1639,7 @@
       }
 
       /* Disable glitch on tablets — saves GPU */
-      .hero h1.vfx-title {
+      .hero h1.scratch-title {
         font-size: clamp(1.3rem, 6vw, 2.4rem);
         letter-spacing: clamp(1px, 0.6vw, 4px);
         white-space: normal;
@@ -1531,11 +1647,19 @@
         line-height: 1.2;
       }
 
-      /* Smaller vortex on tablet */
-      .title-vortex {
-        width: clamp(180px, 50vw, 350px);
-        height: clamp(180px, 50vw, 350px);
-        animation-duration: 18s;
+      .scratch-overlay {
+        display: none;
+      }
+
+      /* Kill energy border on mobile for perf */
+      .hero-title-container::before {
+        animation: none;
+        opacity: 0.4;
+      }
+
+      /* Kill title pseudo glow on mobile */
+      .scratch-title.shimmer-active::after {
+        display: none;
       }
 
       /* Disable shimmer sweep on cards for performance */
@@ -1583,19 +1707,11 @@
     }
 
     @media (max-width: 480px) {
-      .hero h1.vfx-title {
+      .hero h1.scratch-title {
         font-size: clamp(1.05rem, 5.5vw, 1.8rem);
         letter-spacing: 1px;
         line-height: 1.15;
         padding: 0 5px;
-      }
-
-      /* Static vortex on small phones — zero lag */
-      .title-vortex {
-        width: 200px;
-        height: 200px;
-        animation: none;
-        opacity: 0.6;
       }
 
       .events-hint {
@@ -1624,15 +1740,10 @@
     }
 
     @media (max-width: 360px) {
-      .hero h1.vfx-title {
+      .hero h1.scratch-title {
         font-size: clamp(0.9rem, 5vw, 1.4rem);
         letter-spacing: 0.5px;
         line-height: 1.15;
-      }
-
-      .title-vortex {
-        width: 160px;
-        height: 160px;
       }
     }
 
@@ -1675,10 +1786,10 @@
     <div class="hero-line hero-line-bottom"></div>
 
     <div class="hero-title-container">
-      <div class="title-vortex" id="titleVortex">
-        <img src="assets/vortex.png" alt="" loading="eager">
+      <h1 id="split-text" class="scratch-title">TECH TONIC 2K26</h1>
+      <div class="scratch-overlay" id="scratchOverlay">
+        <div class="scratch-overlay-inner">✨ SCRATCH TO REVEAL ✨</div>
       </div>
-      <h1 id="heroTitle" class="vfx-title">TECH TONIC 2K26</h1>
     </div>
     <div class="hero-separator"></div>
     <div class="subtitle">
@@ -1987,68 +2098,110 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
       gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => loader.remove() });
     });
 
-    /* ================= GOLDEN VORTEX TITLE VFX ================= */
+    /* ================= SCRATCH CARD TITLE REVEAL ================= */
     const heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
-    const titleEl = document.getElementById("heroTitle");
-    const vortexEl = document.getElementById("titleVortex");
+    const titleEl = document.getElementById("split-text");
+    const scratchOverlay = document.getElementById("scratchOverlay");
+    const isMobileDevice = window.innerWidth <= 768;
 
-    // Stage 1: Glow orb
-    heroTL.to(".hero-glow", { opacity: 1, scale: 1, duration: 0.8, ease: "power2.inOut" })
+    // Stage 1: Glow orb fades in
+    heroTL.to(".hero-glow", { opacity: 1, scale: 1, duration: 1, ease: "power2.inOut" })
 
-      // Stage 2: Vortex fades in with scale
-      .fromTo(vortexEl,
-        { opacity: 0, scale: 0.3 },
-        { opacity: 0.85, scale: 1, duration: 1, ease: "back.out(1.4)" })
+      // Stage 2: Title container scales in
+      .fromTo(".hero-title-container",
+        { scale: 0.8, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.6 })
 
-      // Stage 3: Title fades in over vortex
-      .to(titleEl, {
-        opacity: 1, duration: 0.6, ease: "power2.in",
-        onComplete: () => titleEl.classList.add('shimmer-go')
-      }, "-=0.4")
+      // Stage 3: Scratch overlay reveal
+      .to(scratchOverlay, {
+        duration: isMobileDevice ? 0.5 : 1.2,
+        ease: "power2.inOut",
+        clipPath: isMobileDevice ? "inset(0 0 100% 0)" : "polygon(0 0, 100% 0, 100% 0, 0 0)",
+        onStart: function () {
+          // Create scratch particles (desktop only)
+          if (!isMobileDevice) {
+            const container = document.querySelector('.hero-title-container');
+            for (let i = 0; i < 20; i++) {
+              const particle = document.createElement('div');
+              particle.className = 'scratch-particle';
+              container.appendChild(particle);
+              gsap.to(particle, {
+                x: (Math.random() - 0.5) * 300,
+                y: (Math.random() - 0.5) * 150,
+                opacity: 1,
+                duration: 0.3,
+                delay: Math.random() * 0.8,
+                onComplete: () => {
+                  gsap.to(particle, {
+                    opacity: 0, scale: 0, duration: 0.4,
+                    onComplete: () => particle.remove()
+                  });
+                }
+              });
+            }
+          }
+        },
+        onComplete: function () {
+          scratchOverlay.style.display = 'none';
+          // Activate shimmer sweep
+          titleEl.classList.add('shimmer-active');
+        }
+      }, "-=0.2")
 
-      // Stage 4: Separator
-      .to(".hero-separator", { width: "clamp(120px, 30vw, 280px)", duration: 0.5, ease: "power2.inOut" }, "-=0.2")
+      // Stage 4: Separator line expands
+      .to(".hero-separator", { width: "clamp(120px, 30vw, 280px)", duration: 0.6, ease: "power2.inOut" }, "-=0.4")
 
-      // Stage 5: Lines
-      .to(".hero-line", { opacity: 0.4, duration: 0.4 }, "-=0.3")
+      // Stage 5: Horizontal cinematic lines sweep in
+      .to(".hero-line", { opacity: 0.4, duration: 0.6 }, "-=0.4")
 
-      // Stage 6: Subtitle
-      .to(".subtitle", { opacity: 1, y: 0, duration: 0.6 }, "-=0.2")
+      // Stage 6: Subtitle fades in
+      .to(".subtitle", { opacity: 1, y: 0, duration: 0.8 }, "-=0.2")
 
-      // Stage 7: Buttons
+      // Stage 7: Buttons stagger in
       .fromTo(".hero-btn",
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, stagger: 0.12, duration: 0.5 }, "-=0.2");
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, stagger: 0.15, duration: 0.6 }, "-=0.3");
 
+    // Pre-set initial states
     gsap.set(".subtitle", { y: 20 });
 
-    /* ================= EVENT CARDS STAGGER ANIMATION ================= */
-    gsap.utils.toArray(".event-card").forEach((card, i) => {
-      gsap.from(card, {
-        opacity: 0,
-        y: 40,
-        scale: 0.9,
-        duration: 0.6,
-        delay: i * 0.08,
-        scrollTrigger: {
-          trigger: card,
-          start: "top 90%"
-        }
-      });
-    });
+    /* ================= SCROLL ANIMATIONS (desktop only) ================= */
+    const isMobileScroll = window.innerWidth <= 768;
 
-    /* ================= SCROLL ANIMATION ================= */
-    gsap.utils.toArray(".glass").forEach(el => {
-      gsap.from(el, {
-        opacity: 0,
-        y: 100,
-        duration: 1,
-        scrollTrigger: {
-          trigger: el,
-          start: "top 80%"
-        }
+    if (!isMobileScroll) {
+      // Desktop: GSAP ScrollTrigger for event cards
+      gsap.utils.toArray(".event-card").forEach((card, i) => {
+        gsap.from(card, {
+          opacity: 0, y: 40, scale: 0.9,
+          duration: 0.6, delay: i * 0.08,
+          scrollTrigger: { trigger: card, start: "top 90%" }
+        });
       });
-    });
+
+      // Desktop: GSAP ScrollTrigger for glass sections
+      gsap.utils.toArray(".glass").forEach(el => {
+        gsap.from(el, {
+          opacity: 0, y: 60, duration: 0.8,
+          scrollTrigger: { trigger: el, start: "top 85%" }
+        });
+      });
+    } else {
+      // Mobile: Lightweight CSS IntersectionObserver (no GSAP scroll = no lag)
+      document.querySelectorAll('.glass, .event-card, .card, .campus-showcase').forEach(el => {
+        el.classList.add('scroll-reveal');
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+      document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+    }
 
     /* ================= PROGRESS BAR (throttled) ================= */
     let ticking = false;
