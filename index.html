@@ -685,9 +685,10 @@
       width: 60%;
       height: 100%;
       background: linear-gradient(120deg, transparent, rgba(212, 175, 55, 0.08), transparent);
-      transform: skewX(-20deg);
+      transform: skewX(-20deg) translateZ(0);
       animation: cardShimmer 4s ease-in-out infinite;
       pointer-events: none;
+      will-change: left;
     }
 
     @keyframes cardShimmer {
@@ -800,23 +801,25 @@
     .hero-title-container {
       position: relative;
       z-index: 2;
+      will-change: transform;
     }
 
     .hero h1.glitch-title {
       font-family: 'Orbitron', 'Cinzel', serif;
-      font-size: clamp(2rem, 8vw, 4.2rem);
+      font-size: clamp(1.8rem, 7vw, 4.2rem);
       font-weight: 900;
       color: #FFD700;
-      letter-spacing: clamp(3px, 1.5vw, 10px);
+      letter-spacing: clamp(2px, 1vw, 8px);
       text-transform: uppercase;
       position: relative;
+      white-space: nowrap;
+      line-height: 1.1;
       text-shadow:
         0 0 7px rgba(255, 215, 0, 0.8),
         0 0 20px rgba(255, 215, 0, 0.5),
-        0 0 42px rgba(212, 175, 55, 0.3),
-        0 0 82px rgba(212, 175, 55, 0.15),
         0 4px 8px rgba(0, 0, 0, 0.9);
       z-index: 2;
+      transform: translateZ(0);
     }
 
     /* Glitch pseudo-elements */
@@ -829,18 +832,19 @@
       width: 100%;
       height: 100%;
       pointer-events: none;
+      will-change: transform, opacity;
     }
 
     .hero h1.glitch-title::before {
       color: #ff006e;
-      animation: glitchTop 3s ease-in-out infinite;
+      animation: glitchTop 4s ease-in-out infinite;
       clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
       -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
     }
 
     .hero h1.glitch-title::after {
       color: #00d4ff;
-      animation: glitchBottom 2.5s ease-in-out infinite;
+      animation: glitchBottom 3.5s ease-in-out infinite;
       clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
       -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
     }
@@ -848,29 +852,24 @@
     @keyframes glitchTop {
 
       0%,
-      90%,
+      92%,
       100% {
-        transform: translate(0);
+        transform: translate3d(0, 0, 0);
         opacity: 0;
       }
 
-      92% {
-        transform: translate(-3px, -2px);
-        opacity: 0.7;
-      }
-
       94% {
-        transform: translate(3px, 2px);
-        opacity: 0.7;
+        transform: translate3d(-2px, -1px, 0);
+        opacity: 0.6;
       }
 
       96% {
-        transform: translate(-2px, 1px);
-        opacity: 0.7;
+        transform: translate3d(2px, 1px, 0);
+        opacity: 0.6;
       }
 
       98% {
-        transform: translate(0);
+        transform: translate3d(0, 0, 0);
         opacity: 0;
       }
     }
@@ -878,29 +877,24 @@
     @keyframes glitchBottom {
 
       0%,
-      88%,
+      90%,
       100% {
-        transform: translate(0);
+        transform: translate3d(0, 0, 0);
         opacity: 0;
       }
 
-      90% {
-        transform: translate(3px, 2px);
-        opacity: 0.7;
-      }
-
       92% {
-        transform: translate(-3px, -1px);
-        opacity: 0.7;
+        transform: translate3d(2px, 1px, 0);
+        opacity: 0.6;
       }
 
       94% {
-        transform: translate(2px, -2px);
-        opacity: 0.7;
+        transform: translate3d(-2px, -1px, 0);
+        opacity: 0.6;
       }
 
       96% {
-        transform: translate(0);
+        transform: translate3d(0, 0, 0);
         opacity: 0;
       }
     }
@@ -1539,46 +1533,104 @@
       }
     }
 
-    /* ── Mobile: Glitch title + event hints ── */
+    /* ── Mobile: Performance + Title Fix ── */
     @media (max-width: 768px) {
       .hero h1.glitch-title {
-        font-size: clamp(1.4rem, 7vw, 2.8rem);
-        letter-spacing: clamp(1px, 0.8vw, 5px);
+        font-size: clamp(1.3rem, 6vw, 2.4rem);
+        letter-spacing: clamp(1px, 0.6vw, 4px);
+        white-space: normal;
+        word-break: keep-all;
+        line-height: 1.2;
+      }
+
+      /* Disable glitch on tablets — saves GPU */
+      .hero h1.glitch-title::before,
+      .hero h1.glitch-title::after {
+        display: none !important;
+      }
+
+      /* Disable shimmer sweep on cards for performance */
+      .event-card::before {
+        display: none !important;
+      }
+
+      /* Simpler card glow on mobile */
+      .event-card {
+        animation: none;
+        border-color: rgba(212, 175, 55, 0.25);
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.08);
+      }
+
+      /* Simpler gradient border on mobile */
+      .glass-animated::before {
+        animation: none;
+        opacity: 0.3;
       }
 
       .events-hint {
         font-size: 0.8rem;
+        animation: none;
+        opacity: 0.9;
       }
 
       .event-card .event-tap-hint {
         font-size: 0.62rem;
+        animation: none;
+        opacity: 0.7;
+      }
+
+      .event-card .event-arrow {
+        animation: none;
+      }
+
+      /* Reduce body background animations */
+      body::before {
+        animation: none;
+      }
+
+      body::after {
+        animation: none;
       }
     }
 
     @media (max-width: 480px) {
       .hero h1.glitch-title {
-        font-size: clamp(1.1rem, 6vw, 2rem);
+        font-size: clamp(1.05rem, 5.5vw, 1.8rem);
         letter-spacing: 1px;
-      }
-
-      .hero h1.glitch-title::before,
-      .hero h1.glitch-title::after {
-        display: none;
+        line-height: 1.15;
+        padding: 0 5px;
       }
 
       .events-hint {
-        font-size: 0.75rem;
+        font-size: 0.72rem;
       }
 
       .event-card .event-tap-hint {
-        font-size: 0.58rem;
+        font-size: 0.56rem;
+      }
+
+      /* Kill expensive animations on small phones */
+      .hero-glow {
+        animation: none !important;
+        opacity: 0.3;
+      }
+
+      /* Disable hero background glow pulse */
+      @keyframes heroGlowPulse {
+
+        0%,
+        100% {
+          transform: none;
+          opacity: 0.3;
+        }
       }
     }
 
     @media (max-width: 360px) {
       .hero h1.glitch-title {
-        font-size: clamp(0.95rem, 5.5vw, 1.5rem);
+        font-size: clamp(0.9rem, 5vw, 1.4rem);
         letter-spacing: 0.5px;
+        line-height: 1.15;
       }
     }
 
@@ -1601,7 +1653,7 @@
 
   <div id="loader"
     style="font-family:'Orbitron','Cinzel',serif;text-shadow:0 0 20px rgba(255,215,0,0.8),0 0 60px rgba(212,175,55,0.4);">
-    ⚡ TECH TONIC 2K26 ⚡</div>
+    TECH TONIC 2K26</div>
   <div id="progress"></div>
   <div id="particles-js"></div>
 
@@ -1621,13 +1673,13 @@
     <div class="hero-line hero-line-bottom"></div>
 
     <div class="hero-title-container">
-      <h1 id="split-text" class="glitch-title" data-text="⚡ TECH TONIC 2K26 ⚡">⚡ TECH TONIC 2K26 ⚡</h1>
+      <h1 id="split-text" class="glitch-title" data-text="TECH TONIC 2K26">TECH TONIC 2K26</h1>
     </div>
     <div class="hero-separator"></div>
     <div class="subtitle">
       🔥 One Day National Level Technical Symposium 🔥<br>
       <span class="dept-name">🎓 Department of Electronics & Communication Engineering</span><br>
-      📅 10 March 2026 | 🏛️ PTLCNCET Campus
+      📅 10 March 2026 | 🏛️ PTLeeCNCET Campus
       <div id="countdown" style="margin-top:15px;font-size:1.1rem;color:#d4af37;font-weight:600;"></div>
 
       <div id="closedBanner" style="display:none;margin-top:20px;padding:16px 20px;
@@ -2007,23 +2059,41 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
       });
     });
 
-    /* ================= PROGRESS BAR ================= */
-    window.onscroll = function () {
-      let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-      let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      let scrolled = (winScroll / height) * 100;
-      document.getElementById("progress").style.width = scrolled + "%";
-    };
-
-    /* ================= PARTICLES ================= */
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 60 },
-        color: { value: "#d4af37" },
-        size: { value: 3 },
-        move: { speed: 1 }
+    /* ================= PROGRESS BAR (throttled) ================= */
+    let ticking = false;
+    window.addEventListener('scroll', function () {
+      if (!ticking) {
+        requestAnimationFrame(function () {
+          let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          document.getElementById("progress").style.width = ((winScroll / height) * 100) + "%";
+          ticking = false;
+        });
+        ticking = true;
       }
-    });
+    }, { passive: true });
+
+    /* ================= PARTICLES (mobile optimized) ================= */
+    const isMobile = window.innerWidth <= 768;
+    const isSmallPhone = window.innerWidth <= 480;
+    if (!isSmallPhone) {
+      particlesJS("particles-js", {
+        particles: {
+          number: { value: isMobile ? 15 : 60 },
+          color: { value: "#d4af37" },
+          size: { value: isMobile ? 2 : 3 },
+          move: { speed: isMobile ? 0.5 : 1 },
+          line_linked: { enable: !isMobile, opacity: 0.15 }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: { onhover: { enable: false }, onclick: { enable: false } }
+        }
+      });
+    } else {
+      // On small phones, hide particles entirely for perf
+      document.getElementById('particles-js').style.display = 'none';
+    }
 
     /* ================= UPI QR CODE ================= */
     new QRCode(document.getElementById("upiQR"), {
