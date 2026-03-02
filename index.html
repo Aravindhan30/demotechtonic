@@ -7,7 +7,7 @@
   <title>TECH TONIC 2K26 </title>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Bangers&display=swap"
     rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -23,6 +23,8 @@
       --gold-light: #e8c84a;
       --gold-dark: #b8962e;
       --gold-glow: rgba(212, 175, 55, 0.25);
+      --neon: #00ff41;
+      --neon-glow: rgba(0, 255, 65, 0.3);
       --dark: #0a0a0a;
       --card-bg: rgba(255, 255, 255, 0.04);
       --card-border: rgba(212, 175, 55, 0.15);
@@ -30,6 +32,7 @@
 
     html {
       scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
     }
 
     * {
@@ -797,175 +800,137 @@
       }
     }
 
-    /* ── Anime Energy Title (Ben 10 / ECE Theme) ── */
+    /* ── Tech-Graffiti Title ── */
     .hero-title-container {
       position: relative;
       z-index: 2;
       display: inline-block;
-      padding: 12px 25px;
+      padding: 18px 35px;
     }
 
-    /* Energy border glow around title */
+    /* Title container glow aura */
     .hero-title-container::before {
       content: '';
       position: absolute;
-      top: -3px;
-      left: -3px;
-      right: -3px;
-      bottom: -3px;
-      border-radius: 16px;
-      background: linear-gradient(45deg, #00ff41, #d4af37, #00ff41, #ffd700, #00ff41);
-      background-size: 400% 400%;
-      animation: energyBorder 3s ease infinite;
-      opacity: 0.7;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: radial-gradient(ellipse at center, rgba(0, 200, 255, 0.12) 0%, transparent 70%);
       z-index: -1;
-      filter: blur(8px);
+      border-radius: 20px;
+      pointer-events: none;
     }
 
-    .hero-title-container::after {
-      content: '';
+    /* Impact flash */
+    .title-flash {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      border-radius: 14px;
-      background: rgba(0, 0, 0, 0.85);
-      z-index: -1;
+      top: -50%;
+      left: -50%;
+      right: -50%;
+      bottom: -50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
+      z-index: 10;
+      opacity: 0;
+      pointer-events: none;
     }
 
-    @keyframes energyBorder {
-      0% {
-        background-position: 0% 50%;
-        opacity: 0.5;
-      }
-
-      50% {
-        background-position: 100% 50%;
-        opacity: 0.9;
-      }
-
-      100% {
-        background-position: 0% 50%;
-        opacity: 0.5;
-      }
-    }
-
-    .hero h1.scratch-title {
-      font-family: 'Orbitron', 'Cinzel', serif;
-      font-size: clamp(1.8rem, 7vw, 4.5rem);
-      font-weight: 900;
+    /* Main title line */
+    .hero h1.title-card {
+      font-family: 'Bangers', cursive;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 400;
       text-transform: uppercase;
       position: relative;
       white-space: nowrap;
-      line-height: 1.1;
-      letter-spacing: clamp(2px, 1vw, 8px);
-      /* Anime green-gold energy gradient */
-      background: linear-gradient(90deg,
-          #00ff41 0%, #39ff14 10%, #d4af37 25%,
-          #ffd700 40%, #fff8dc 50%,
-          #ffd700 60%, #d4af37 75%,
-          #39ff14 90%, #00ff41 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: drop-shadow(0 0 15px rgba(0, 255, 65, 0.5)) drop-shadow(0 0 30px rgba(212, 175, 55, 0.3)) drop-shadow(0 4px 6px rgba(0, 0, 0, 0.8));
-      transform: translateZ(0);
+      line-height: 0.95;
+      letter-spacing: 0;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      transform: perspective(600px) rotateX(4deg) translateZ(0);
       z-index: 2;
     }
 
-    /* Continuous energy shimmer sweep */
-    .scratch-title.shimmer-active {
-      animation: energySweep 2.5s linear infinite;
+    /* Individual letter spans with bow-tie scaling */
+    .title-card .tl {
+      display: inline-block;
+      color: #ffd700;
+      background: linear-gradient(180deg, #e0f7fa 0%, #00e5ff 15%, #ffd700 40%, #ffffff 55%, #ffd700 70%, #00bcd4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      -webkit-text-stroke: 4px #000;
+      paint-order: stroke fill;
+      filter: drop-shadow(4px 4px 0 #000) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
+      transition: transform 0.3s ease;
     }
 
-    @keyframes energySweep {
+    /* Bow-tie scaling: outer letters bigger, middle smaller */
+    .tl-outer {
+      transform: scaleY(1.2) scaleX(1.05);
+    }
+
+    .tl-mid {
+      transform: scaleY(1.0) scaleX(1.0);
+    }
+
+    .tl-inner {
+      transform: scaleY(0.92) scaleX(0.98);
+    }
+
+    /* Space between TECH and TONIC */
+    .tl-space {
+      width: clamp(8px, 1.5vw, 16px);
+    }
+
+    /* Gear icon replacing O */
+    .title-gear {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      filter: drop-shadow(4px 4px 0 #000) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
+    }
+
+    .title-gear svg {
+      width: clamp(2.8rem, 9vw, 6.5rem);
+      height: clamp(2.8rem, 9vw, 6.5rem);
+      fill: url(#gearGold);
+      stroke: #000;
+      stroke-width: 8;
+      paint-order: stroke fill;
+      transform: scaleY(0.92);
+    }
+
+    /* 2K26 sub-badge */
+    .title-year {
+      display: block;
+      width: 100%;
+      text-align: center;
+      font-family: 'Bangers', cursive;
+      font-size: clamp(1.3rem, 4.5vw, 2.8rem);
+      color: #00e5ff;
+      -webkit-text-fill-color: #00e5ff;
+      -webkit-text-stroke: 2px #000;
+      letter-spacing: clamp(8px, 3vw, 25px);
+      margin-top: 2px;
+      filter: drop-shadow(3px 3px 0 #000);
+    }
+
+    /* Shimmer sweep */
+    .title-card.shimmer-active .tl {
+      animation: titleGraffShimmer 3s linear infinite;
+      background-size: 200% auto;
+    }
+
+    @keyframes titleGraffShimmer {
       0% {
         background-position: 200% center;
       }
 
       100% {
         background-position: -200% center;
-      }
-    }
-
-    /* Pulsing energy glow on title */
-    .scratch-title.shimmer-active::after {
-      content: 'TECH TONIC 2K26';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: inherit;
-      background-size: inherit;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      filter: blur(12px);
-      opacity: 0.4;
-      animation: energyPulse 2s ease-in-out infinite;
-      pointer-events: none;
-    }
-
-    @keyframes energyPulse {
-
-      0%,
-      100% {
-        opacity: 0.2;
-        transform: scale(1);
-      }
-
-      50% {
-        opacity: 0.5;
-        transform: scale(1.02);
-      }
-    }
-
-    /* Scratch overlay (energy cover) */
-    .scratch-overlay {
-      position: absolute;
-      top: -8px;
-      left: -15px;
-      right: -15px;
-      bottom: -8px;
-      z-index: 3;
-      border-radius: 12px;
-      overflow: hidden;
-      pointer-events: none;
-    }
-
-    .scratch-overlay-inner {
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(135deg,
-          #003d00 0%, #00560a 20%, #00ff41 50%, #00560a 80%, #003d00 100%);
-      background-size: 400% 400%;
-      animation: scratchShine 2s ease infinite;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Orbitron', sans-serif;
-      font-size: clamp(0.6rem, 1.8vw, 0.95rem);
-      font-weight: 700;
-      color: rgba(0, 255, 65, 0.8);
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
-    }
-
-    @keyframes scratchShine {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
       }
     }
 
@@ -1630,35 +1595,24 @@
 
     /* ── Mobile: Performance + Title Fix ── */
     @media (max-width: 768px) {
-      .hero h1.glitch-title {
-        font-size: clamp(1.3rem, 6vw, 2.4rem);
-        letter-spacing: clamp(1px, 0.6vw, 4px);
-        white-space: normal;
-        word-break: keep-all;
-        line-height: 1.2;
+
+      /* Mobile title card adjustments */
+      .hero h1.title-card {
+        font-size: clamp(2rem, 9vw, 3rem);
+        -webkit-text-stroke: 2px #000;
+        letter-spacing: 4px;
+        transform: perspective(600px) rotateX(3deg) translateZ(0);
       }
 
-      /* Disable glitch on tablets — saves GPU */
-      .hero h1.scratch-title {
-        font-size: clamp(1.3rem, 6vw, 2.4rem);
-        letter-spacing: clamp(1px, 0.6vw, 4px);
-        white-space: normal;
-        word-break: keep-all;
-        line-height: 1.2;
+      .title-year {
+        font-size: clamp(0.8rem, 3vw, 1.2rem);
+        -webkit-text-stroke: 1px #1a1a1a;
+        letter-spacing: 8px;
       }
 
-      .scratch-overlay {
-        display: none;
-      }
-
-      /* Kill energy border on mobile for perf */
-      .hero-title-container::before {
-        animation: none;
-        opacity: 0.4;
-      }
-
-      /* Kill title pseudo glow on mobile */
-      .scratch-title.shimmer-active::after {
+      /* Hide X-banner + flash on mobile for perf */
+      .title-x-banner,
+      .title-flash {
         display: none;
       }
 
@@ -1740,10 +1694,8 @@
     }
 
     @media (max-width: 360px) {
-      .hero h1.scratch-title {
-        font-size: clamp(0.9rem, 5vw, 1.4rem);
-        letter-spacing: 0.5px;
-        line-height: 1.15;
+      .hero h1.title-card {
+        font-size: clamp(1.8rem, 8vw, 2.2rem);
       }
     }
 
@@ -1786,10 +1738,30 @@
     <div class="hero-line hero-line-bottom"></div>
 
     <div class="hero-title-container">
-      <h1 id="split-text" class="scratch-title">TECH TONIC 2K26</h1>
-      <div class="scratch-overlay" id="scratchOverlay">
-        <div class="scratch-overlay-inner">✨ SCRATCH TO REVEAL ✨</div>
-      </div>
+      <div class="title-flash" id="titleFlash"></div>
+      <!-- SVG gradient def for gear -->
+      <svg width="0" height="0" style="position:absolute">
+        <defs>
+          <linearGradient id="gearGold" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#e0f7fa" />
+            <stop offset="20%" stop-color="#00e5ff" />
+            <stop offset="45%" stop-color="#ffd700" />
+            <stop offset="65%" stop-color="#ffffff" />
+            <stop offset="85%" stop-color="#ffd700" />
+            <stop offset="100%" stop-color="#00bcd4" />
+          </linearGradient>
+        </defs>
+      </svg>
+      <h1 id="split-text" class="title-card">
+        <span class="tl tl-outer">T</span><span class="tl tl-outer">E</span><span class="tl tl-mid">C</span><span
+          class="tl tl-inner">H</span><span class="tl-space"></span><span class="tl tl-inner">T</span><span
+          class="title-gear"><svg viewBox="0 0 100 100">
+            <path
+              d="M50 18a32 32 0 1 1 0 64 32 32 0 0 1 0-64zm0 10a22 22 0 1 0 0 44 22 22 0 0 0 0-44zM44 2h12l2 12 6 2 10-8 8 8-8 10 2 6 12 2v12l-12 2-2 6 8 10-8 8-10-8-6 2-2 12H44l-2-12-6-2-10 8-8-8 8-10-2-6-12-2V44l12-2 2-6-8-10 8-8 10 8 6-2z" />
+          </svg></span><span class="tl tl-inner">N</span><span class="tl tl-mid">I</span><span
+          class="tl tl-outer">C</span>
+        <span class="title-year">2 K 2 6</span>
+      </h1>
     </div>
     <div class="hero-separator"></div>
     <div class="subtitle">
@@ -2098,71 +2070,71 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
       gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => loader.remove() });
     });
 
-    /* ================= SCRATCH CARD TITLE REVEAL ================= */
+    /* ================= MOVIE TITLE CARD SLAM ================= */
     const heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
     const titleEl = document.getElementById("split-text");
-    const scratchOverlay = document.getElementById("scratchOverlay");
+    const xBanner = document.getElementById("xBanner");
+    const titleFlash = document.getElementById("titleFlash");
     const isMobileDevice = window.innerWidth <= 768;
 
-    // Stage 1: Glow orb fades in
-    heroTL.to(".hero-glow", { opacity: 1, scale: 1, duration: 1, ease: "power2.inOut" })
+    // Pre-hide
+    gsap.set(".hero-title-container", { scale: 0, opacity: 0 });
+    gsap.set(xBanner, { scale: 0, opacity: 0 });
 
-      // Stage 2: Title container scales in
-      .fromTo(".hero-title-container",
-        { scale: 0.8, opacity: 0 },
-        { scale: 1, opacity: 1, duration: 0.6 })
+    // Stage 1: Glow orb
+    heroTL.to(".hero-glow", { opacity: 1, scale: 1, duration: 0.8, ease: "power2.inOut" })
 
-      // Stage 3: Scratch overlay reveal
-      .to(scratchOverlay, {
-        duration: isMobileDevice ? 0.5 : 1.2,
-        ease: "power2.inOut",
-        clipPath: isMobileDevice ? "inset(0 0 100% 0)" : "polygon(0 0, 100% 0, 100% 0, 0 0)",
+      // Stage 2: X-banner expands (desktop)
+      .to(xBanner, { scale: isMobileDevice ? 0 : 1, opacity: 1, duration: 0.3, ease: "power4.out" })
+
+      // Stage 3: Title SLAMS in (movie title card impact)
+      .to(".hero-title-container", {
+        scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.5)",
         onStart: function () {
-          // Create scratch particles (desktop only)
+          // Impact flash
+          gsap.to(titleFlash, {
+            opacity: 1, duration: 0.1, onComplete: () => {
+              gsap.to(titleFlash, { opacity: 0, duration: 0.5 });
+            }
+          });
+          // Orange/gold sparks on desktop
           if (!isMobileDevice) {
             const container = document.querySelector('.hero-title-container');
             for (let i = 0; i < 20; i++) {
-              const particle = document.createElement('div');
-              particle.className = 'scratch-particle';
-              container.appendChild(particle);
-              gsap.to(particle, {
-                x: (Math.random() - 0.5) * 300,
-                y: (Math.random() - 0.5) * 150,
-                opacity: 1,
-                duration: 0.3,
-                delay: Math.random() * 0.8,
-                onComplete: () => {
-                  gsap.to(particle, {
-                    opacity: 0, scale: 0, duration: 0.4,
-                    onComplete: () => particle.remove()
-                  });
-                }
+              const p = document.createElement('div');
+              p.className = 'scratch-particle';
+              p.style.background = Math.random() > 0.5 ? '#ffd700' : '#ff6d00';
+              p.style.boxShadow = '0 0 6px ' + p.style.background;
+              container.appendChild(p);
+              gsap.to(p, {
+                x: (Math.random() - 0.5) * 500,
+                y: (Math.random() - 0.5) * 250,
+                opacity: 1, duration: 0.3,
+                delay: Math.random() * 0.3,
+                onComplete: () => gsap.to(p, { opacity: 0, scale: 0, duration: 0.6, onComplete: () => p.remove() })
               });
             }
           }
         },
         onComplete: function () {
-          scratchOverlay.style.display = 'none';
-          // Activate shimmer sweep
           titleEl.classList.add('shimmer-active');
         }
-      }, "-=0.2")
+      }, "-=0.1")
 
-      // Stage 4: Separator line expands
-      .to(".hero-separator", { width: "clamp(120px, 30vw, 280px)", duration: 0.6, ease: "power2.inOut" }, "-=0.4")
+      // Stage 4: Separator
+      .to(".hero-separator", { width: "clamp(120px, 30vw, 280px)", duration: 0.5, ease: "power2.inOut" }, "-=0.2")
 
-      // Stage 5: Horizontal cinematic lines sweep in
-      .to(".hero-line", { opacity: 0.4, duration: 0.6 }, "-=0.4")
+      // Stage 5: Lines sweep in
+      .to(".hero-line", { opacity: 0.4, duration: 0.4 }, "-=0.2")
 
       // Stage 6: Subtitle fades in
-      .to(".subtitle", { opacity: 1, y: 0, duration: 0.8 }, "-=0.2")
+      .to(".subtitle", { opacity: 1, y: 0, duration: 0.6 }, "-=0.1")
 
-      // Stage 7: Buttons stagger in
+      // Stage 7: Buttons
       .fromTo(".hero-btn",
         { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, stagger: 0.15, duration: 0.6 }, "-=0.3");
+        { opacity: 1, y: 0, stagger: 0.1, duration: 0.4 }, "-=0.1");
 
-    // Pre-set initial states
     gsap.set(".subtitle", { y: 20 });
 
     /* ================= SCROLL ANIMATIONS (desktop only) ================= */
