@@ -797,105 +797,84 @@
       }
     }
 
-    /* ── Glitch Neon Title ── */
+    /* ── Spinning Vortex Title ── */
     .hero-title-container {
       position: relative;
       z-index: 2;
-      will-change: transform;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .hero h1.glitch-title {
+    /* Golden vortex spinner */
+    .title-vortex {
+      position: absolute;
+      width: clamp(260px, 55vw, 600px);
+      height: clamp(260px, 55vw, 600px);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: vortexSpin 12s linear infinite;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      will-change: transform;
+      mix-blend-mode: screen;
+      filter: brightness(1.1) saturate(1.2);
+    }
+
+    .title-vortex img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    @keyframes vortexSpin {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    /* Chrome gold gradient title */
+    .hero h1.vfx-title {
       font-family: 'Orbitron', 'Cinzel', serif;
-      font-size: clamp(1.8rem, 7vw, 4.2rem);
+      font-size: clamp(1.8rem, 7vw, 4.5rem);
       font-weight: 900;
-      color: #FFD700;
-      letter-spacing: clamp(2px, 1vw, 8px);
       text-transform: uppercase;
       position: relative;
       white-space: nowrap;
       line-height: 1.1;
-      text-shadow:
-        0 0 7px rgba(255, 215, 0, 0.8),
-        0 0 20px rgba(255, 215, 0, 0.5),
-        0 4px 8px rgba(0, 0, 0, 0.9);
+      letter-spacing: clamp(2px, 1vw, 8px);
+      background: linear-gradient(90deg,
+          #b8860b 0%, #ffd700 18%, #fff8dc 35%,
+          #ffd700 50%, #daa520 65%, #ffd700 82%, #b8860b 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.5)) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.9));
       z-index: 2;
+      opacity: 0;
       transform: translateZ(0);
+      animation: titleShimmer 3s linear infinite;
+      animation-play-state: paused;
     }
 
-    /* Glitch pseudo-elements */
-    .hero h1.glitch-title::before,
-    .hero h1.glitch-title::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      will-change: transform, opacity;
+    .vfx-title.shimmer-go {
+      animation-play-state: running;
     }
 
-    .hero h1.glitch-title::before {
-      color: #ff006e;
-      animation: glitchTop 4s ease-in-out infinite;
-      clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-      -webkit-clip-path: polygon(0 0, 100% 0, 100% 33%, 0 33%);
-    }
+    @keyframes titleShimmer {
+      0% {
+        background-position: 200% center;
+      }
 
-    .hero h1.glitch-title::after {
-      color: #00d4ff;
-      animation: glitchBottom 3.5s ease-in-out infinite;
-      clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-      -webkit-clip-path: polygon(0 67%, 100% 67%, 100% 100%, 0 100%);
-    }
-
-    @keyframes glitchTop {
-
-      0%,
-      92%,
       100% {
-        transform: translate3d(0, 0, 0);
-        opacity: 0;
-      }
-
-      94% {
-        transform: translate3d(-2px, -1px, 0);
-        opacity: 0.6;
-      }
-
-      96% {
-        transform: translate3d(2px, 1px, 0);
-        opacity: 0.6;
-      }
-
-      98% {
-        transform: translate3d(0, 0, 0);
-        opacity: 0;
-      }
-    }
-
-    @keyframes glitchBottom {
-
-      0%,
-      90%,
-      100% {
-        transform: translate3d(0, 0, 0);
-        opacity: 0;
-      }
-
-      92% {
-        transform: translate3d(2px, 1px, 0);
-        opacity: 0.6;
-      }
-
-      94% {
-        transform: translate3d(-2px, -1px, 0);
-        opacity: 0.6;
-      }
-
-      96% {
-        transform: translate3d(0, 0, 0);
-        opacity: 0;
+        background-position: -200% center;
       }
     }
 
@@ -1544,9 +1523,19 @@
       }
 
       /* Disable glitch on tablets — saves GPU */
-      .hero h1.glitch-title::before,
-      .hero h1.glitch-title::after {
-        display: none !important;
+      .hero h1.vfx-title {
+        font-size: clamp(1.3rem, 6vw, 2.4rem);
+        letter-spacing: clamp(1px, 0.6vw, 4px);
+        white-space: normal;
+        word-break: keep-all;
+        line-height: 1.2;
+      }
+
+      /* Smaller vortex on tablet */
+      .title-vortex {
+        width: clamp(180px, 50vw, 350px);
+        height: clamp(180px, 50vw, 350px);
+        animation-duration: 18s;
       }
 
       /* Disable shimmer sweep on cards for performance */
@@ -1594,11 +1583,19 @@
     }
 
     @media (max-width: 480px) {
-      .hero h1.glitch-title {
+      .hero h1.vfx-title {
         font-size: clamp(1.05rem, 5.5vw, 1.8rem);
         letter-spacing: 1px;
         line-height: 1.15;
         padding: 0 5px;
+      }
+
+      /* Static vortex on small phones — zero lag */
+      .title-vortex {
+        width: 200px;
+        height: 200px;
+        animation: none;
+        opacity: 0.6;
       }
 
       .events-hint {
@@ -1627,10 +1624,15 @@
     }
 
     @media (max-width: 360px) {
-      .hero h1.glitch-title {
+      .hero h1.vfx-title {
         font-size: clamp(0.9rem, 5vw, 1.4rem);
         letter-spacing: 0.5px;
         line-height: 1.15;
+      }
+
+      .title-vortex {
+        width: 160px;
+        height: 160px;
       }
     }
 
@@ -1673,7 +1675,10 @@
     <div class="hero-line hero-line-bottom"></div>
 
     <div class="hero-title-container">
-      <h1 id="split-text" class="glitch-title" data-text="TECH TONIC 2K26">TECH TONIC 2K26</h1>
+      <div class="title-vortex" id="titleVortex">
+        <img src="assets/vortex.png" alt="" loading="eager">
+      </div>
+      <h1 id="heroTitle" class="vfx-title">TECH TONIC 2K26</h1>
     </div>
     <div class="hero-separator"></div>
     <div class="subtitle">
@@ -1982,53 +1987,39 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
       gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => loader.remove() });
     });
 
-    /* ================= SPLIT TEXT ================= */
-    /* ================= CINEMATIC HERO INTRO ================= */
+    /* ================= GOLDEN VORTEX TITLE VFX ================= */
     const heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
+    const titleEl = document.getElementById("heroTitle");
+    const vortexEl = document.getElementById("titleVortex");
 
-    // Split title into letters
-    let text = document.getElementById("split-text");
-    let originalText = text.innerText;
-    // Temporarily disable glitch pseudo-elements during letter animation
-    text.style.setProperty('--glitch-display', 'none');
-    let letters = originalText.split("");
-    text.innerHTML = "";
-    letters.forEach(letter => {
-      let span = document.createElement("span");
-      span.innerText = letter;
-      span.style.display = "inline-block";
-      if (letter === " ") span.style.width = "0.3em";
-      text.appendChild(span);
-    });
+    // Stage 1: Glow orb
+    heroTL.to(".hero-glow", { opacity: 1, scale: 1, duration: 0.8, ease: "power2.inOut" })
 
-    // Stage 1: Glow orb fades in
-    heroTL.to(".hero-glow", { opacity: 1, scale: 1, duration: 1.2, ease: "power2.inOut" })
+      // Stage 2: Vortex fades in with scale
+      .fromTo(vortexEl,
+        { opacity: 0, scale: 0.3 },
+        { opacity: 0.85, scale: 1, duration: 1, ease: "back.out(1.4)" })
 
-      // Stage 2: Letters drop in one by one
-      .from("#split-text span", {
-        y: 60,
-        opacity: 0,
-        rotateX: -90,
-        stagger: 0.04,
-        duration: 0.8,
-        ease: "back.out(1.7)"
-      }, "-=0.3")
+      // Stage 3: Title fades in over vortex
+      .to(titleEl, {
+        opacity: 1, duration: 0.6, ease: "power2.in",
+        onComplete: () => titleEl.classList.add('shimmer-go')
+      }, "-=0.4")
 
-      // Stage 4: Separator line expands
-      .to(".hero-separator", { width: "clamp(120px, 30vw, 280px)", duration: 0.6, ease: "power2.inOut" }, "-=0.2")
+      // Stage 4: Separator
+      .to(".hero-separator", { width: "clamp(120px, 30vw, 280px)", duration: 0.5, ease: "power2.inOut" }, "-=0.2")
 
-      // Stage 5: Horizontal cinematic lines sweep in
-      .to(".hero-line", { opacity: 0.4, duration: 0.6 }, "-=0.4")
+      // Stage 5: Lines
+      .to(".hero-line", { opacity: 0.4, duration: 0.4 }, "-=0.3")
 
-      // Stage 6: Subtitle fades in with slight scale
-      .to(".subtitle", { opacity: 1, y: 0, duration: 0.8 }, "-=0.2")
+      // Stage 6: Subtitle
+      .to(".subtitle", { opacity: 1, y: 0, duration: 0.6 }, "-=0.2")
 
-      // Stage 7: Buttons stagger in
+      // Stage 7: Buttons
       .fromTo(".hero-btn",
-        { opacity: 0, y: 30 },
-        { opacity: 1, y: 0, stagger: 0.15, duration: 0.6 }, "-=0.3");
+        { opacity: 0, y: 20 },
+        { opacity: 1, y: 0, stagger: 0.12, duration: 0.5 }, "-=0.2");
 
-    // Pre-set initial states for GSAP (ensures no flash)
     gsap.set(".subtitle", { y: 20 });
 
     /* ================= EVENT CARDS STAGGER ANIMATION ================= */
