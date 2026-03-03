@@ -7,7 +7,7 @@
   <title>TECH TONIC 2K26 </title>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600&family=Orbitron:wght@400;700;900&family=Bangers&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600&family=Orbitron:wght@400;700;900&display=swap"
     rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -33,6 +33,7 @@
     html {
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
+      touch-action: manipulation;
     }
 
     * {
@@ -691,7 +692,6 @@
       transform: skewX(-20deg) translateZ(0);
       animation: cardShimmer 4s ease-in-out infinite;
       pointer-events: none;
-      will-change: left;
     }
 
     @keyframes cardShimmer {
@@ -800,151 +800,12 @@
       }
     }
 
-    /* ── Tech-Graffiti Title ── */
+    /* ── Elegant Title ── */
     .hero-title-container {
       position: relative;
       z-index: 2;
       display: inline-block;
       padding: 18px 35px;
-    }
-
-    /* Title container glow aura */
-    .hero-title-container::before {
-      content: '';
-      position: absolute;
-      top: -10px;
-      left: -10px;
-      right: -10px;
-      bottom: -10px;
-      background: radial-gradient(ellipse at center, rgba(0, 200, 255, 0.12) 0%, transparent 70%);
-      z-index: -1;
-      border-radius: 20px;
-      pointer-events: none;
-    }
-
-    /* Impact flash */
-    .title-flash {
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      right: -50%;
-      bottom: -50%;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, transparent 70%);
-      z-index: 10;
-      opacity: 0;
-      pointer-events: none;
-    }
-
-    /* Main title line */
-    .hero h1.title-card {
-      font-family: 'Bangers', cursive;
-      font-size: clamp(3rem, 10vw, 7rem);
-      font-weight: 400;
-      text-transform: uppercase;
-      position: relative;
-      white-space: nowrap;
-      line-height: 0.95;
-      letter-spacing: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      flex-wrap: wrap;
-      transform: perspective(600px) rotateX(4deg) translateZ(0);
-      z-index: 2;
-    }
-
-    /* Individual letter spans with bow-tie scaling */
-    .title-card .tl {
-      display: inline-block;
-      color: #ffd700;
-      background: linear-gradient(180deg, #e0f7fa 0%, #00e5ff 15%, #ffd700 40%, #ffffff 55%, #ffd700 70%, #00bcd4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      -webkit-text-stroke: 4px #000;
-      paint-order: stroke fill;
-      filter: drop-shadow(4px 4px 0 #000) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
-      transition: transform 0.3s ease;
-    }
-
-    /* Bow-tie scaling: outer letters bigger, middle smaller */
-    .tl-outer {
-      transform: scaleY(1.2) scaleX(1.05);
-    }
-
-    .tl-mid {
-      transform: scaleY(1.0) scaleX(1.0);
-    }
-
-    .tl-inner {
-      transform: scaleY(0.92) scaleX(0.98);
-    }
-
-    /* Space between TECH and TONIC */
-    .tl-space {
-      width: clamp(8px, 1.5vw, 16px);
-    }
-
-    /* Gear icon replacing O */
-    .title-gear {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      filter: drop-shadow(4px 4px 0 #000) drop-shadow(0 6px 8px rgba(0, 0, 0, 0.5));
-    }
-
-    .title-gear svg {
-      width: clamp(2.8rem, 9vw, 6.5rem);
-      height: clamp(2.8rem, 9vw, 6.5rem);
-      fill: url(#gearGold);
-      stroke: #000;
-      stroke-width: 8;
-      paint-order: stroke fill;
-      transform: scaleY(0.92);
-    }
-
-    /* 2K26 sub-badge */
-    .title-year {
-      display: block;
-      width: 100%;
-      text-align: center;
-      font-family: 'Bangers', cursive;
-      font-size: clamp(1.3rem, 4.5vw, 2.8rem);
-      color: #00e5ff;
-      -webkit-text-fill-color: #00e5ff;
-      -webkit-text-stroke: 2px #000;
-      letter-spacing: clamp(8px, 3vw, 25px);
-      margin-top: 2px;
-      filter: drop-shadow(3px 3px 0 #000);
-    }
-
-    /* Shimmer sweep */
-    .title-card.shimmer-active .tl {
-      animation: titleGraffShimmer 3s linear infinite;
-      background-size: 200% auto;
-    }
-
-    @keyframes titleGraffShimmer {
-      0% {
-        background-position: 200% center;
-      }
-
-      100% {
-        background-position: -200% center;
-      }
-    }
-
-    /* Scratch particles */
-    .scratch-particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: #00ff41;
-      border-radius: 50%;
-      box-shadow: 0 0 6px #00ff41;
-      pointer-events: none;
-      z-index: 4;
-      opacity: 0;
     }
 
     /* CSS scroll-reveal (replaces heavy GSAP on mobile) */
@@ -1596,24 +1457,31 @@
     /* ── Mobile: Performance + Title Fix ── */
     @media (max-width: 768px) {
 
-      /* Mobile title card adjustments */
-      .hero h1.title-card {
-        font-size: clamp(2rem, 9vw, 3rem);
-        -webkit-text-stroke: 2px #000;
-        letter-spacing: 4px;
-        transform: perspective(600px) rotateX(3deg) translateZ(0);
+      /* Remove expensive backdrop-filter on mobile */
+      nav {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(0, 0, 0, 0.95);
       }
 
-      .title-year {
-        font-size: clamp(0.8rem, 3vw, 1.2rem);
-        -webkit-text-stroke: 1px #1a1a1a;
-        letter-spacing: 8px;
+      .glass {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(15, 15, 15, 0.95);
       }
 
-      /* Hide X-banner + flash on mobile for perf */
-      .title-x-banner,
-      .title-flash {
-        display: none;
+      .hero-outline-btn {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+      }
+
+      /* Remove fixed position pseudo-elements that cause scroll lag */
+      body::before {
+        display: none !important;
+      }
+
+      body::after {
+        display: none !important;
       }
 
       /* Disable shimmer sweep on cards for performance */
@@ -1626,12 +1494,41 @@
         animation: none;
         border-color: rgba(212, 175, 55, 0.25);
         box-shadow: 0 0 10px rgba(212, 175, 55, 0.08);
+        transition: none;
       }
 
       /* Simpler gradient border on mobile */
       .glass-animated::before {
         animation: none;
         opacity: 0.3;
+      }
+
+      /* Kill dept-name shimmer on mobile */
+      .dept-name {
+        animation: none;
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: #FFD700;
+        background-clip: unset;
+      }
+
+      /* Kill register button bounce + filter on mobile */
+      .register-btn {
+        animation: none;
+      }
+
+      .register-btn::after {
+        filter: none;
+      }
+
+      .register-btn::before {
+        display: none;
+      }
+
+      /* Kill hero glow pulse on mobile */
+      .hero-glow {
+        animation: none !important;
+        opacity: 0.4;
       }
 
       .events-hint {
@@ -1650,23 +1547,27 @@
         animation: none;
       }
 
-      /* Reduce body background animations */
-      body::before {
-        animation: none;
+      /* Hardware accelerate key elements for smooth scrolling */
+      .section,
+      .glass,
+      .glass-animated,
+      .hero {
+        transform: translateZ(0);
+        contain: content;
       }
 
-      body::after {
-        animation: none;
+      /* Remove hover effects on mobile (no hover on touch) */
+      .campus-card:hover {
+        transform: none;
+      }
+
+      .event-card:hover {
+        transform: none;
+        box-shadow: 0 0 10px rgba(212, 175, 55, 0.08);
       }
     }
 
     @media (max-width: 480px) {
-      .hero h1.scratch-title {
-        font-size: clamp(1.05rem, 5.5vw, 1.8rem);
-        letter-spacing: 1px;
-        line-height: 1.15;
-        padding: 0 5px;
-      }
 
       .events-hint {
         font-size: 0.72rem;
@@ -1676,26 +1577,19 @@
         font-size: 0.56rem;
       }
 
-      /* Kill expensive animations on small phones */
+      /* Hide hero glow entirely on small phones */
       .hero-glow {
-        animation: none !important;
-        opacity: 0.3;
+        display: none !important;
       }
 
-      /* Disable hero background glow pulse */
-      @keyframes heroGlowPulse {
-
-        0%,
-        100% {
-          transform: none;
-          opacity: 0.3;
-        }
+      /* Hide particles on small phones */
+      #particles-js {
+        display: none !important;
       }
-    }
 
-    @media (max-width: 360px) {
-      .hero h1.title-card {
-        font-size: clamp(1.8rem, 8vw, 2.2rem);
+      /* Simplify hero lines */
+      .hero-line {
+        display: none;
       }
     }
 
@@ -1738,30 +1632,7 @@
     <div class="hero-line hero-line-bottom"></div>
 
     <div class="hero-title-container">
-      <div class="title-flash" id="titleFlash"></div>
-      <!-- SVG gradient def for gear -->
-      <svg width="0" height="0" style="position:absolute">
-        <defs>
-          <linearGradient id="gearGold" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#e0f7fa" />
-            <stop offset="20%" stop-color="#00e5ff" />
-            <stop offset="45%" stop-color="#ffd700" />
-            <stop offset="65%" stop-color="#ffffff" />
-            <stop offset="85%" stop-color="#ffd700" />
-            <stop offset="100%" stop-color="#00bcd4" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <h1 id="split-text" class="title-card">
-        <span class="tl tl-outer">T</span><span class="tl tl-outer">E</span><span class="tl tl-mid">C</span><span
-          class="tl tl-inner">H</span><span class="tl-space"></span><span class="tl tl-inner">T</span><span
-          class="title-gear"><svg viewBox="0 0 100 100">
-            <path
-              d="M50 18a32 32 0 1 1 0 64 32 32 0 0 1 0-64zm0 10a22 22 0 1 0 0 44 22 22 0 0 0 0-44zM44 2h12l2 12 6 2 10-8 8 8-8 10 2 6 12 2v12l-12 2-2 6 8 10-8 8-10-8-6 2-2 12H44l-2-12-6-2-10 8-8-8 8-10-2-6-12-2V44l12-2 2-6-8-10 8-8 10 8 6-2z" />
-          </svg></span><span class="tl tl-inner">N</span><span class="tl tl-mid">I</span><span
-          class="tl tl-outer">C</span>
-        <span class="title-year">2 K 2 6</span>
-      </h1>
+      <h1>TECH TONIC 2K26</h1>
     </div>
     <div class="hero-separator"></div>
     <div class="subtitle">
@@ -2070,72 +1941,34 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
       gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => loader.remove() });
     });
 
-    /* ================= MOVIE TITLE CARD SLAM ================= */
+    /* ================= ELEGANT TITLE REVEAL ================= */
     const heroTL = gsap.timeline({ defaults: { ease: "power3.out" } });
-    const titleEl = document.getElementById("split-text");
-    const xBanner = document.getElementById("xBanner");
-    const titleFlash = document.getElementById("titleFlash");
-    const isMobileDevice = window.innerWidth <= 768;
 
     // Pre-hide
-    gsap.set(".hero-title-container", { scale: 0, opacity: 0 });
-    gsap.set(xBanner, { scale: 0, opacity: 0 });
+    gsap.set(".hero-title-container", { opacity: 0, y: 40 });
+    gsap.set(".subtitle", { y: 20 });
 
     // Stage 1: Glow orb
     heroTL.to(".hero-glow", { opacity: 1, scale: 1, duration: 0.8, ease: "power2.inOut" })
 
-      // Stage 2: X-banner expands (desktop)
-      .to(xBanner, { scale: isMobileDevice ? 0 : 1, opacity: 1, duration: 0.3, ease: "power4.out" })
-
-      // Stage 3: Title SLAMS in (movie title card impact)
+      // Stage 2: Title fades in elegantly
       .to(".hero-title-container", {
-        scale: 1, opacity: 1, duration: 0.5, ease: "back.out(2.5)",
-        onStart: function () {
-          // Impact flash
-          gsap.to(titleFlash, {
-            opacity: 1, duration: 0.1, onComplete: () => {
-              gsap.to(titleFlash, { opacity: 0, duration: 0.5 });
-            }
-          });
-          // Orange/gold sparks on desktop
-          if (!isMobileDevice) {
-            const container = document.querySelector('.hero-title-container');
-            for (let i = 0; i < 20; i++) {
-              const p = document.createElement('div');
-              p.className = 'scratch-particle';
-              p.style.background = Math.random() > 0.5 ? '#ffd700' : '#ff6d00';
-              p.style.boxShadow = '0 0 6px ' + p.style.background;
-              container.appendChild(p);
-              gsap.to(p, {
-                x: (Math.random() - 0.5) * 500,
-                y: (Math.random() - 0.5) * 250,
-                opacity: 1, duration: 0.3,
-                delay: Math.random() * 0.3,
-                onComplete: () => gsap.to(p, { opacity: 0, scale: 0, duration: 0.6, onComplete: () => p.remove() })
-              });
-            }
-          }
-        },
-        onComplete: function () {
-          titleEl.classList.add('shimmer-active');
-        }
-      }, "-=0.1")
+        opacity: 1, y: 0, duration: 0.8, ease: "power2.out"
+      }, "-=0.3")
 
-      // Stage 4: Separator
+      // Stage 3: Separator
       .to(".hero-separator", { width: "clamp(120px, 30vw, 280px)", duration: 0.5, ease: "power2.inOut" }, "-=0.2")
 
-      // Stage 5: Lines sweep in
+      // Stage 4: Lines sweep in
       .to(".hero-line", { opacity: 0.4, duration: 0.4 }, "-=0.2")
 
-      // Stage 6: Subtitle fades in
+      // Stage 5: Subtitle fades in
       .to(".subtitle", { opacity: 1, y: 0, duration: 0.6 }, "-=0.1")
 
-      // Stage 7: Buttons
+      // Stage 6: Buttons
       .fromTo(".hero-btn",
         { opacity: 0, y: 30 },
         { opacity: 1, y: 0, stagger: 0.1, duration: 0.4 }, "-=0.1");
-
-    gsap.set(".subtitle", { y: 20 });
 
     /* ================= SCROLL ANIMATIONS (desktop only) ================= */
     const isMobileScroll = window.innerWidth <= 768;
@@ -2176,13 +2009,14 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
     }
 
     /* ================= PROGRESS BAR (throttled) ================= */
+    const progressBar = document.getElementById("progress");
     let ticking = false;
     window.addEventListener('scroll', function () {
       if (!ticking) {
         requestAnimationFrame(function () {
           let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
           let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-          document.getElementById("progress").style.width = ((winScroll / height) * 100) + "%";
+          progressBar.style.width = ((winScroll / height) * 100) + "%";
           ticking = false;
         });
         ticking = true;
@@ -2195,10 +2029,10 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
     if (!isSmallPhone) {
       particlesJS("particles-js", {
         particles: {
-          number: { value: isMobile ? 15 : 60 },
+          number: { value: isMobile ? 8 : 60 },
           color: { value: "#d4af37" },
-          size: { value: isMobile ? 2 : 3 },
-          move: { speed: isMobile ? 0.5 : 1 },
+          size: { value: isMobile ? 1.5 : 3 },
+          move: { speed: isMobile ? 0.3 : 1 },
           line_linked: { enable: !isMobile, opacity: 0.15 }
         },
         interactivity: {
