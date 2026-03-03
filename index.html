@@ -1475,12 +1475,23 @@
         -webkit-backdrop-filter: none;
       }
 
-      /* Remove fixed position pseudo-elements that cause scroll lag */
+      /* Static gradient background on mobile (no animation = no scroll lag) */
       body::before {
-        display: none !important;
+        position: absolute !important;
+        animation: none !important;
+        background:
+          radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+          radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+          linear-gradient(135deg, #030305 0%, #0a0a12 25%, #0d0b14 50%, #0a0a0f 75%, #050507 100%) !important;
       }
 
       body::after {
+        position: absolute !important;
+        animation: none !important;
+      }
+
+      /* Hide particles on all mobile for performance */
+      #particles-js {
         display: none !important;
       }
 
@@ -1553,7 +1564,7 @@
       .glass-animated,
       .hero {
         transform: translateZ(0);
-        contain: content;
+        contain: layout style;
       }
 
       /* Remove hover effects on mobile (no hover on touch) */
@@ -1579,11 +1590,6 @@
 
       /* Hide hero glow entirely on small phones */
       .hero-glow {
-        display: none !important;
-      }
-
-      /* Hide particles on small phones */
-      #particles-js {
         display: none !important;
       }
 
@@ -2025,7 +2031,7 @@ font-weight:600;text-align:center;max-width:420px;border:1px solid rgba(255,100,
 
     /* ================= PARTICLES (mobile optimized) ================= */
     const isMobile = window.innerWidth <= 768;
-    const isSmallPhone = window.innerWidth <= 480;
+    const isSmallPhone = window.innerWidth <= 768;
     if (!isSmallPhone) {
       particlesJS("particles-js", {
         particles: {
