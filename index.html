@@ -5,8 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>On-Spot Registration | TECH TONIC 2K26</title>
-    <meta name="description"
-        content="On-spot registration for TECH TONIC 2K26 - National Level Technical Symposium by Department of ECE">
+    <meta name="description" content="On-spot registration for TECH TONIC 2K26 — National Level Technical Symposium">
 
     <link
         href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap"
@@ -19,8 +18,6 @@
             --gold-light: #e8c84a;
             --gold-dark: #b8962e;
             --gold-glow: rgba(212, 175, 55, 0.25);
-            --dark: #0a0a0a;
-            --card-bg: rgba(255, 255, 255, 0.04);
             --card-border: rgba(212, 175, 55, 0.15);
             --danger: #ff4d4d;
             --success: #4ade80;
@@ -56,19 +53,8 @@
                 radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
                 radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
                 radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, #030305 0%, #0a0a12 25%, #0d0b14 50%, #0a0a0f 75%, #050507 100%);
+                linear-gradient(135deg, #030305, #0a0a12 25%, #0d0b14 50%, #0a0a0f 75%, #050507);
             z-index: -2;
-            animation: bgShift 20s ease-in-out infinite alternate;
-        }
-
-        @keyframes bgShift {
-            0% {
-                background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
-            }
-
-            100% {
-                background-position: 100% 100%, 0% 100%, 50% 0%, 100% 100%;
-            }
         }
 
         .particles {
@@ -112,7 +98,6 @@
             }
         }
 
-        /* Header */
         .header {
             text-align: center;
             padding: 40px 20px 20px;
@@ -167,7 +152,6 @@
         .header p {
             color: #999;
             font-size: 0.85rem;
-            letter-spacing: 0.5px;
         }
 
         .header .event-date {
@@ -177,58 +161,12 @@
             margin-top: 4px;
         }
 
-        /* Nav tabs */
-        .tab-nav {
-            display: flex;
-            max-width: 520px;
-            margin: 16px auto 0;
-            padding: 0 16px;
-            gap: 8px;
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 12px 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            color: #888;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .tab-btn.active {
-            background: rgba(212, 175, 55, 0.12);
-            border-color: var(--gold);
-            color: var(--gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
-        }
-
-        .tab-btn:not(.active):hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #ccc;
-        }
-
-        /* Container */
         .container {
             max-width: 520px;
             margin: 0 auto;
             padding: 16px 16px 40px;
         }
 
-        .tab-content {
-            display: none;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        /* Glass card */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
@@ -237,20 +175,32 @@
             border: 1px solid var(--card-border);
             padding: 24px 20px;
             margin-bottom: 16px;
-            transition: border-color 0.3s ease;
+            opacity: 0;
+            transform: translateY(15px);
             animation: fadeUp 0.4s ease forwards;
         }
 
-        .glass-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
+        .glass-card:nth-child(1) {
+            animation-delay: 0.05s;
+        }
+
+        .glass-card:nth-child(2) {
+            animation-delay: 0.1s;
+        }
+
+        .glass-card:nth-child(3) {
+            animation-delay: 0.15s;
+        }
+
+        .glass-card:nth-child(4) {
+            animation-delay: 0.2s;
+        }
+
+        .glass-card:nth-child(5) {
+            animation-delay: 0.25s;
         }
 
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(15px);
-            }
-
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -267,10 +217,6 @@
             gap: 8px;
         }
 
-        .card-title .icon {
-            font-size: 1.2rem;
-        }
-
         .card-title::after {
             content: '';
             flex: 1;
@@ -279,7 +225,6 @@
             margin-left: 10px;
         }
 
-        /* Form */
         .form-group {
             margin-bottom: 14px;
         }
@@ -294,7 +239,7 @@
             font-weight: 500;
         }
 
-        .form-group label .required {
+        .required {
             color: var(--danger);
             margin-left: 2px;
         }
@@ -378,9 +323,8 @@
             flex: 1;
         }
 
-        /* Fee card */
         .fee-card {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08) 0%, rgba(212, 175, 55, 0.02) 100%);
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.08), rgba(212, 175, 55, 0.02));
             border: 1px solid rgba(212, 175, 55, 0.25);
             border-radius: 16px;
             padding: 20px;
@@ -397,15 +341,11 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
-            animation: rotateFee 10s linear infinite;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05), transparent 70%);
+            animation: spin 10s linear infinite;
         }
 
-        @keyframes rotateFee {
-            from {
-                transform: rotate(0deg);
-            }
-
+        @keyframes spin {
             to {
                 transform: rotate(360deg);
             }
@@ -437,7 +377,6 @@
             color: #FFD700;
             font-weight: 800;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-            letter-spacing: 2px;
         }
 
         .fee-total-label {
@@ -448,7 +387,6 @@
             margin-top: 4px;
         }
 
-        /* QR */
         .qr-section {
             text-align: center;
         }
@@ -493,7 +431,6 @@
             font-weight: 500;
         }
 
-        /* Upload */
         .upload-area {
             border: 2px dashed rgba(212, 175, 55, 0.3);
             border-radius: 14px;
@@ -505,8 +442,7 @@
             overflow: hidden;
         }
 
-        .upload-area:hover,
-        .upload-area.dragover {
+        .upload-area:hover {
             border-color: var(--gold);
             background: rgba(212, 175, 55, 0.05);
         }
@@ -560,7 +496,6 @@
             color: var(--danger);
             cursor: pointer;
             font-size: 1.1rem;
-            padding: 0 4px;
         }
 
         .warning-banner {
@@ -577,11 +512,6 @@
             line-height: 1.5;
         }
 
-        .warning-banner .warn-icon {
-            font-size: 1.1rem;
-            flex-shrink: 0;
-        }
-
         .info-tip {
             font-size: 0.72rem;
             color: #666;
@@ -591,11 +521,10 @@
             gap: 4px;
         }
 
-        /* Submit button */
         .submit-btn {
             width: 100%;
             padding: 16px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
             color: #000;
             font-family: 'Poppins', sans-serif;
             font-size: 1rem;
@@ -642,7 +571,6 @@
             transform: none;
         }
 
-        /* Validation */
         .form-input.error,
         .form-select.error {
             border-color: var(--danger) !important;
@@ -660,28 +588,41 @@
             display: block;
         }
 
-        /* Toast */
-        .copy-toast {
+        .toast {
             position: fixed;
             bottom: 30px;
             left: 50%;
             transform: translateX(-50%) translateY(100px);
-            background: var(--gold);
-            color: #000;
             padding: 10px 24px;
             border-radius: 50px;
             font-size: 0.85rem;
             font-weight: 600;
             z-index: 1000;
             transition: transform 0.3s ease;
-            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
         }
 
-        .copy-toast.show {
+        .toast.show {
             transform: translateX(-50%) translateY(0);
         }
 
-        /* Success overlay */
+        .toast.gold {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .toast.red {
+            background: var(--danger);
+            color: #fff;
+            box-shadow: 0 8px 30px rgba(255, 77, 77, 0.4);
+        }
+
+        .toast.green {
+            background: var(--success);
+            color: #000;
+            box-shadow: 0 8px 30px rgba(74, 222, 128, 0.4);
+        }
+
         .success-overlay {
             display: none;
             position: fixed;
@@ -759,7 +700,6 @@
             font-size: 0.85rem;
             cursor: pointer;
             transition: all 0.3s;
-            text-decoration: none;
         }
 
         .success-card .btn-new:hover {
@@ -767,141 +707,6 @@
             color: #000;
         }
 
-        /* ── RECORDS TAB ── */
-        .stats-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 16px;
-        }
-
-        .stat-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 16px;
-            text-align: center;
-        }
-
-        .stat-value {
-            font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
-            color: #FFD700;
-            font-weight: 800;
-            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
-        }
-
-        .stat-label {
-            font-size: 0.68rem;
-            color: #777;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-top: 4px;
-        }
-
-        .action-btns {
-            display: flex;
-            gap: 8px;
-            margin-bottom: 16px;
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: 12px;
-            background: rgba(212, 175, 55, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.25);
-            color: var(--gold);
-            border-radius: 10px;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.78rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-
-        .action-btn:hover {
-            background: rgba(212, 175, 55, 0.15);
-            border-color: var(--gold);
-        }
-
-        .action-btn.danger {
-            background: rgba(255, 77, 77, 0.08);
-            border-color: rgba(255, 77, 77, 0.25);
-            color: var(--danger);
-        }
-
-        .action-btn.danger:hover {
-            background: rgba(255, 77, 77, 0.15);
-        }
-
-        /* Registration entries */
-        .entry-card {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--card-border);
-            border-radius: 14px;
-            padding: 16px;
-            margin-bottom: 10px;
-            transition: border-color 0.3s;
-        }
-
-        .entry-card:hover {
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-
-        .entry-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .entry-name {
-            font-weight: 600;
-            color: var(--gold);
-            font-size: 0.95rem;
-        }
-
-        .entry-id {
-            font-size: 0.65rem;
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            padding: 3px 8px;
-            border-radius: 6px;
-            color: var(--gold);
-            font-family: monospace;
-        }
-
-        .entry-details {
-            font-size: 0.78rem;
-            color: #999;
-            line-height: 1.7;
-        }
-
-        .entry-details span {
-            color: #bbb;
-        }
-
-        .entry-time {
-            font-size: 0.68rem;
-            color: #555;
-            margin-top: 6px;
-        }
-
-        .no-records {
-            text-align: center;
-            padding: 40px 20px;
-            color: #555;
-            font-size: 0.85rem;
-        }
-
-        .no-records .empty-icon {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        /* Footer */
         .footer {
             text-align: center;
             padding: 20px;
@@ -923,43 +728,13 @@
             margin-top: 6px;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 4px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: transparent;
         }
 
         ::-webkit-scrollbar-thumb {
             background: rgba(212, 175, 55, 0.3);
             border-radius: 10px;
-        }
-
-        /* Search */
-        .search-bar {
-            width: 100%;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(212, 175, 55, 0.12);
-            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            font-size: 0.85rem;
-            border-radius: 10px;
-            outline: none;
-            margin-bottom: 14px;
-            transition: all 0.3s;
-        }
-
-        .search-bar:focus {
-            border-color: var(--gold);
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.12);
-        }
-
-        .search-bar::placeholder {
-            color: #555;
         }
     </style>
 </head>
@@ -968,7 +743,6 @@
 
     <div class="particles" id="particles"></div>
 
-    <!-- Header -->
     <header class="header">
         <div class="badge">📍 On-Spot Registration</div>
         <h1>TECH TONIC 2K26</h1>
@@ -976,158 +750,115 @@
         <p class="event-date">📅 March 10, 2026 &nbsp;|&nbsp; Department of ECE</p>
     </header>
 
-    <!-- Tab Navigation -->
-    <div class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('register')">📝 Register</button>
-        <button class="tab-btn" onclick="switchTab('records')">📋 Records <span id="recordCount"
-                style="font-size: 0.7rem; opacity: 0.7;"></span></button>
-    </div>
-
-    <!-- Main Content -->
     <main class="container">
 
-        <!-- ═══════════════ REGISTER TAB ═══════════════ -->
-        <div class="tab-content active" id="tab-register">
+        <!-- Participant Details -->
+        <section class="glass-card">
+            <h2 class="card-title"><span>👤</span> Participant Details</h2>
 
-            <!-- Participant Details -->
-            <section class="glass-card">
-                <h2 class="card-title"><span class="icon">👤</span> Participant Details</h2>
-
-                <div class="form-group">
-                    <label>Full Name <span class="required">*</span></label>
-                    <input type="text" class="form-input" id="participantName" placeholder="Enter full name"
-                        autocomplete="name">
-                    <div class="error-text" id="nameError">Please enter the name</div>
-                </div>
-
-                <div class="form-group">
-                    <label>College Name <span class="required">*</span></label>
-                    <input type="text" class="form-input" id="collegeName" placeholder="Enter college name"
-                        autocomplete="organization">
-                    <div class="error-text" id="collegeError">Please enter the college name</div>
-                </div>
-
-                <div class="form-group">
-                    <label>Phone Number <span class="required">*</span></label>
-                    <input type="tel" class="form-input" id="phoneNumber" placeholder="10-digit mobile number"
-                        autocomplete="tel" maxlength="10" inputmode="numeric">
-                    <div class="error-text" id="phoneError">Please enter a valid 10-digit phone number</div>
-                </div>
-
-                <div class="form-group">
-                    <label>Email ID <span class="required">*</span></label>
-                    <input type="email" class="form-input" id="emailId" placeholder="Enter email address"
-                        autocomplete="email">
-                    <div class="error-text" id="emailError">Please enter a valid email address</div>
-                </div>
-            </section>
-
-            <!-- Team Details -->
-            <section class="glass-card">
-                <h2 class="card-title"><span class="icon">👥</span> Team Details</h2>
-
-                <div class="form-group">
-                    <label>Team Size <span class="required">*</span></label>
-                    <select class="form-select" id="teamSize">
-                        <option value="" disabled selected>Select team size</option>
-                        <option value="1">1 Member (Solo)</option>
-                        <option value="2">2 Members</option>
-                        <option value="3">3 Members</option>
-                        <option value="4">4 Members</option>
-                    </select>
-                </div>
-
-                <div id="teamMembersSection"></div>
-
-                <div class="fee-card" id="feeCard" style="display: none;">
-                    <div class="fee-calculation">
-                        <div class="fee-row">
-                            <span id="feeTeamSize">1</span> member(s) <span class="multiply">×</span> ₹100 per head
-                        </div>
-                        <div class="fee-total" id="feeTotal">₹100</div>
-                        <div class="fee-total-label">Total Registration Fee</div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Payment -->
-            <section class="glass-card">
-                <h2 class="card-title"><span class="icon">💳</span> Payment</h2>
-                <div class="qr-section">
-                    <p style="font-size: 0.82rem; color: #bbb; margin-bottom: 10px;">Scan QR to pay via <strong
-                            style="color: var(--gold);">GPay / UPI</strong></p>
-                    <div class="qr-container" id="qrCode"></div>
-                    <br>
-                    <div class="upi-id" onclick="copyUPI()" title="Tap to copy">
-                        <span>📱</span>
-                        <span style="font-family: monospace;">mamallanktr-2@okaxis</span>
-                        <span>📋</span>
-                    </div>
-                    <p class="payment-note">
-                        Pay <span class="highlight" id="paymentAmount">₹100</span> for your team.<br>
-                        Take a <span class="highlight">screenshot</span> for verification.
-                    </p>
-                </div>
-            </section>
-
-            <!-- OD Upload -->
-            <section class="glass-card">
-                <h2 class="card-title"><span class="icon">📄</span> OD Copy Upload</h2>
-                <div class="warning-banner">
-                    <span class="warn-icon">⚠️</span>
-                    <span>Participants must carry college <strong style="color: var(--gold);">OD Copy</strong> & ID
-                        Card. Upload below.</span>
-                </div>
-                <div class="upload-area" id="odUploadArea">
-                    <input type="file" id="odFile" accept="image/*,.pdf" onchange="handleFileUpload(this)">
-                    <span class="upload-icon">📤</span>
-                    <p class="upload-text">Tap to upload OD Copy</p>
-                    <p class="upload-hint">JPG, PNG, PDF (Max 5MB)</p>
-                </div>
-                <div class="file-preview" id="odFilePreview">
-                    <span>✅</span>
-                    <span id="odFileName"></span>
-                    <button class="remove-file" onclick="removeFile()">✕</button>
-                </div>
-                <div class="info-tip"><span>ℹ️</span><span>Upload a clear photo/scan of OD copy</span></div>
-            </section>
-
-            <!-- Submit -->
-            <section class="glass-card" style="padding: 20px;">
-                <button class="submit-btn" id="submitBtn" onclick="submitRegistration()">
-                    ✨ Complete Registration
-                </button>
-            </section>
-
-        </div>
-
-        <!-- ═══════════════ RECORDS TAB ═══════════════ -->
-        <div class="tab-content" id="tab-records">
-
-            <div class="stats-row">
-                <div class="stat-card">
-                    <div class="stat-value" id="totalRegistrations">0</div>
-                    <div class="stat-label">Registrations</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="totalParticipants">0</div>
-                    <div class="stat-label">Participants</div>
-                </div>
+            <div class="form-group">
+                <label>Full Name <span class="required">*</span></label>
+                <input type="text" class="form-input" id="participantName" placeholder="Enter full name"
+                    autocomplete="name">
+                <div class="error-text" id="nameError">Please enter the name</div>
             </div>
 
-            <div class="action-btns">
-                <button class="action-btn" onclick="exportCSV()">📥 Export CSV</button>
-                <button class="action-btn danger" onclick="clearAllData()">🗑️ Clear All</button>
+            <div class="form-group">
+                <label>College Name <span class="required">*</span></label>
+                <input type="text" class="form-input" id="collegeName" placeholder="Enter college name"
+                    autocomplete="organization">
+                <div class="error-text" id="collegeError">Please enter the college name</div>
             </div>
 
-            <input type="text" class="search-bar" placeholder="🔍 Search by name, college..."
-                oninput="renderRecords(this.value)">
+            <div class="form-group">
+                <label>Phone Number <span class="required">*</span></label>
+                <input type="tel" class="form-input" id="phoneNumber" placeholder="10-digit mobile number"
+                    maxlength="10" inputmode="numeric">
+                <div class="error-text" id="phoneError">Enter a valid 10-digit phone number</div>
+            </div>
 
-            <div id="recordsList"></div>
+            <div class="form-group">
+                <label>Email ID <span class="required">*</span></label>
+                <input type="email" class="form-input" id="emailId" placeholder="Enter email address"
+                    autocomplete="email">
+                <div class="error-text" id="emailError">Enter a valid email address</div>
+            </div>
+        </section>
 
-        </div>
+        <!-- Team Details -->
+        <section class="glass-card">
+            <h2 class="card-title"><span>👥</span> Team Details</h2>
 
-        <!-- Footer -->
+            <div class="form-group">
+                <label>Team Size <span class="required">*</span></label>
+                <select class="form-select" id="teamSize">
+                    <option value="" disabled selected>Select team size</option>
+                    <option value="1">1 Member (Solo)</option>
+                    <option value="2">2 Members</option>
+                    <option value="3">3 Members</option>
+                    <option value="4">4 Members</option>
+                </select>
+            </div>
+
+            <div id="teamMembersSection"></div>
+
+            <div class="fee-card" id="feeCard" style="display: none;">
+                <div class="fee-calculation">
+                    <div class="fee-row"><span id="feeTeamSize">1</span> member(s) <span class="multiply">×</span> ₹100
+                        per head</div>
+                    <div class="fee-total" id="feeTotal">₹100</div>
+                    <div class="fee-total-label">Total Registration Fee</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Payment -->
+        <section class="glass-card">
+            <h2 class="card-title"><span>💳</span> Payment</h2>
+            <div class="qr-section">
+                <p style="font-size: 0.82rem; color: #bbb; margin-bottom: 10px;">Scan QR to pay via <strong
+                        style="color: var(--gold);">GPay / UPI</strong></p>
+                <div class="qr-container" id="qrCode"></div>
+                <br>
+                <div class="upi-id" onclick="copyUPI()">
+                    <span>📱</span>
+                    <span style="font-family: monospace;">mamallanktr-2@okaxis</span>
+                    <span>📋</span>
+                </div>
+                <p class="payment-note">
+                    Pay <span class="highlight" id="paymentAmount">₹100</span> for your team.<br>
+                    Take a <span class="highlight">screenshot</span> for verification.
+                </p>
+            </div>
+        </section>
+
+        <!-- OD Upload -->
+        <section class="glass-card">
+            <h2 class="card-title"><span>📄</span> OD Copy Upload</h2>
+            <div class="warning-banner">
+                <span>⚠️</span>
+                <span>Participants must carry college <strong style="color: var(--gold);">OD Copy</strong> & ID Card.
+                    Upload below.</span>
+            </div>
+            <div class="upload-area" id="odUploadArea">
+                <input type="file" id="odFile" accept="image/*,.pdf" onchange="handleFileUpload(this)">
+                <span class="upload-icon">📤</span>
+                <p class="upload-text">Tap to upload OD Copy</p>
+                <p class="upload-hint">JPG, PNG, PDF (Max 5MB)</p>
+            </div>
+            <div class="file-preview" id="odFilePreview">
+                <span>✅</span>
+                <span id="odFileName"></span>
+                <button class="remove-file" onclick="removeFile()">✕</button>
+            </div>
+            <div class="info-tip"><span>ℹ️</span><span>Upload a clear photo/scan of OD copy</span></div>
+        </section>
+
+        <!-- Submit -->
+        <section class="glass-card" style="padding: 20px;">
+            <button class="submit-btn" id="submitBtn" onclick="submitRegistration()">✨ Complete Registration</button>
+        </section>
+
         <footer class="footer">
             <a href="https://techtonic-2k26.vercel.app/">← Back to TECH TONIC 2K26</a>
             <p class="credit">Dept. of ECE | P.T. Lee CNCET</p>
@@ -1139,16 +870,22 @@
     <div class="success-overlay" id="successOverlay">
         <div class="success-card">
             <div class="success-check">✓</div>
-            <h2>Registration Saved!</h2>
-            <p id="successMessage">Registration has been recorded successfully. You can view it in the Records tab.</p>
+            <h2>Registration Done!</h2>
+            <p id="successMessage">Your registration has been saved successfully.</p>
             <button class="btn-new" onclick="resetForm()">Register Next</button>
         </div>
     </div>
 
-    <div class="copy-toast" id="copyToast">✓ UPI ID Copied!</div>
+    <div class="toast" id="toast"></div>
 
     <script>
-        // ── Particles ──
+        // ═══════════════════════════════════════════
+        // ⚠️  PASTE YOUR GOOGLE APPS SCRIPT URL HERE
+        // ═══════════════════════════════════════════
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjJbTH8DnmO3rZQE50TFST42FWJk38_J-GPoVfAyypePhZOStPY4i6h-8GsJ83AhFLmQ/exec';
+        // ═══════════════════════════════════════════
+
+        // Particles
         (function () {
             const c = document.getElementById('particles');
             for (let i = 0; i < 20; i++) {
@@ -1162,17 +899,7 @@
             }
         })();
 
-        // ── Tab Switching ──
-        function switchTab(tab) {
-            document.querySelectorAll('.tab-btn').forEach((b, i) => {
-                b.classList.toggle('active', (tab === 'register' && i === 0) || (tab === 'records' && i === 1));
-            });
-            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-            document.getElementById('tab-' + tab).classList.add('active');
-            if (tab === 'records') renderRecords();
-        }
-
-        // ── QR Code ──
+        // QR Code
         const upiId = 'mamallanktr-2@okaxis';
         let currentAmount = 100;
 
@@ -1182,13 +909,13 @@
             new QRCode(qr, {
                 text: `upi://pay?pa=${upiId}&pn=TechTonic2K26&am=${amount}&cu=INR&tn=TechTonic2K26%20Registration`,
                 width: 180, height: 180,
-                colorDark: '#000000', colorLight: '#ffffff',
+                colorDark: '#000', colorLight: '#fff',
                 correctLevel: QRCode.CorrectLevel.M
             });
         }
         generateQR(100);
 
-        // ── Team Size ──
+        // Team Size
         const teamSizeSelect = document.getElementById('teamSize');
         const teamMembersSection = document.getElementById('teamMembersSection');
 
@@ -1214,11 +941,7 @@
             for (let i = 0; i < size; i++) {
                 const div = document.createElement('div');
                 div.className = 'member-input-group';
-                div.style.animationDelay = (i * 0.08) + 's';
-                div.innerHTML = `
-          <span class="member-number">${i + 1}</span>
-          <input type="text" class="form-input member-name" placeholder="${i === 0 ? 'Team Leader name' : 'Member ' + (i + 1) + ' name'}" autocomplete="off">
-        `;
+                div.innerHTML = `<span class="member-number">${i + 1}</span><input type="text" class="form-input member-name" placeholder="${i === 0 ? 'Team Leader name' : 'Member ' + (i + 1) + ' name'}">`;
                 teamMembersSection.appendChild(div);
             }
 
@@ -1232,7 +955,7 @@
             if (first && first !== document.activeElement) first.value = this.value;
         });
 
-        // ── File Upload ──
+        // File Upload
         let uploadedFile = null;
 
         function handleFileUpload(input) {
@@ -1252,7 +975,15 @@
             document.getElementById('odUploadArea').style.borderColor = '';
         }
 
-        // ── Copy UPI ──
+        // Toast
+        function showToast(msg, type = 'gold') {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.className = 'toast ' + type;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2500);
+        }
+
         function copyUPI() {
             navigator.clipboard.writeText(upiId).catch(() => {
                 const ta = document.createElement('textarea');
@@ -1265,67 +996,32 @@
             showToast('✓ UPI ID Copied!');
         }
 
-        function showToast(msg) {
-            const t = document.getElementById('copyToast');
-            t.textContent = msg;
-            t.classList.add('show');
-            setTimeout(() => t.classList.remove('show'), 2000);
-        }
-
-        // ── LocalStorage DB ──
-        function getRegistrations() {
-            return JSON.parse(localStorage.getItem('tt26_onspot') || '[]');
-        }
-
-        function saveRegistration(entry) {
-            const data = getRegistrations();
-            data.unshift(entry);
-            localStorage.setItem('tt26_onspot', JSON.stringify(data));
-            updateRecordCount();
-        }
-
-        function updateRecordCount() {
-            const count = getRegistrations().length;
-            const el = document.getElementById('recordCount');
-            el.textContent = count > 0 ? `(${count})` : '';
-        }
-
-        updateRecordCount();
-
-        // ── Validation ──
-        function validateField(id, errId, condition) {
-            const el = document.getElementById(id);
-            const err = document.getElementById(errId);
-            if (condition(el.value.trim())) {
-                el.classList.add('error');
-                if (err) err.classList.add('show');
-                return false;
-            }
-            el.classList.remove('error');
-            if (err) err.classList.remove('show');
-            return true;
-        }
-
+        // Validation
         function validateForm() {
             let valid = true;
-            if (!validateField('participantName', 'nameError', v => !v)) valid = false;
-            if (!validateField('collegeName', 'collegeError', v => !v)) valid = false;
-            if (!validateField('phoneNumber', 'phoneError', v => !/^[6-9]\d{9}$/.test(v))) valid = false;
-            if (!validateField('emailId', 'emailError', v => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v))) valid = false;
+            const check = (id, errId, test) => {
+                const el = document.getElementById(id);
+                const err = document.getElementById(errId);
+                if (test(el.value.trim())) { el.classList.add('error'); if (err) err.classList.add('show'); valid = false; }
+                else { el.classList.remove('error'); if (err) err.classList.remove('show'); }
+            };
+
+            check('participantName', 'nameError', v => !v);
+            check('collegeName', 'collegeError', v => !v);
+            check('phoneNumber', 'phoneError', v => !/^[6-9]\d{9}$/.test(v));
+            check('emailId', 'emailError', v => !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v));
 
             const ts = document.getElementById('teamSize');
-            if (!ts.value) { ts.classList.add('error'); valid = false; }
-            else ts.classList.remove('error');
+            if (!ts.value) { ts.classList.add('error'); valid = false; } else ts.classList.remove('error');
 
             document.querySelectorAll('.member-name').forEach(inp => {
-                if (!inp.value.trim()) { inp.classList.add('error'); valid = false; }
-                else inp.classList.remove('error');
+                if (!inp.value.trim()) { inp.classList.add('error'); valid = false; } else inp.classList.remove('error');
             });
 
             return valid;
         }
 
-        document.addEventListener('input', function (e) {
+        document.addEventListener('input', e => {
             if (e.target.classList.contains('form-input') || e.target.classList.contains('form-select')) {
                 e.target.classList.remove('error');
                 const next = e.target.nextElementSibling;
@@ -1333,7 +1029,7 @@
             }
         });
 
-        // ── Submit ──
+        // Submit
         function submitRegistration() {
             if (!validateForm()) {
                 const first = document.querySelector('.error');
@@ -1343,13 +1039,12 @@
 
             const btn = document.getElementById('submitBtn');
             btn.disabled = true;
-            btn.textContent = '⏳ Saving...';
+            btn.textContent = '⏳ Submitting...';
 
             const members = [];
             document.querySelectorAll('.member-name').forEach(inp => members.push(inp.value.trim()));
 
-            const entry = {
-                id: 'OS-' + Date.now().toString(36).toUpperCase(),
+            const payload = {
                 name: document.getElementById('participantName').value.trim(),
                 college: document.getElementById('collegeName').value.trim(),
                 phone: document.getElementById('phoneNumber').value.trim(),
@@ -1357,19 +1052,29 @@
                 teamSize: parseInt(document.getElementById('teamSize').value),
                 members: members,
                 totalFee: currentAmount,
-                odUploaded: !!uploadedFile,
-                odFileName: uploadedFile ? uploadedFile.name : '',
-                time: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+                odUploaded: !!uploadedFile
             };
 
-            setTimeout(() => {
-                saveRegistration(entry);
-                btn.disabled = false;
-                btn.textContent = '✨ Complete Registration';
-                document.getElementById('successMessage').innerHTML =
-                    `<strong style="color:var(--gold)">${entry.name}</strong> — Team of ${entry.teamSize} — ₹${entry.totalFee}<br>ID: <code style="color:var(--gold)">${entry.id}</code>`;
-                document.getElementById('successOverlay').classList.add('show');
-            }, 600);
+            // Send to Google Sheets
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'text/plain' },
+                body: JSON.stringify(payload)
+            })
+                .then(() => {
+                    btn.disabled = false;
+                    btn.textContent = '✨ Complete Registration';
+                    document.getElementById('successMessage').innerHTML =
+                        `<strong style="color:var(--gold)">${payload.name}</strong> — Team of ${payload.teamSize} — ₹${payload.totalFee}<br>Registration submitted ✅`;
+                    document.getElementById('successOverlay').classList.add('show');
+                })
+                .catch(err => {
+                    btn.disabled = false;
+                    btn.textContent = '✨ Complete Registration';
+                    showToast('Network error — try again', 'red');
+                    console.error(err);
+                });
         }
 
         function resetForm() {
@@ -1383,73 +1088,6 @@
             currentAmount = 100;
             document.getElementById('paymentAmount').textContent = '₹100';
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // ── Records Tab ──
-        function renderRecords(search = '') {
-            const data = getRegistrations();
-            const filtered = search
-                ? data.filter(e => (e.name + e.college + e.phone + e.email + e.id).toLowerCase().includes(search.toLowerCase()))
-                : data;
-
-            document.getElementById('totalRegistrations').textContent = data.length;
-            document.getElementById('totalParticipants').textContent = data.reduce((s, e) => s + (e.teamSize || 1), 0);
-
-            const list = document.getElementById('recordsList');
-
-            if (filtered.length === 0) {
-                list.innerHTML = `<div class="no-records"><span class="empty-icon">📭</span>${search ? 'No matching records' : 'No registrations yet'}</div>`;
-                return;
-            }
-
-            list.innerHTML = filtered.map(e => `
-        <div class="entry-card">
-          <div class="entry-header">
-            <span class="entry-name">${e.name}</span>
-            <span class="entry-id">${e.id}</span>
-          </div>
-          <div class="entry-details">
-            🏫 <span>${e.college}</span><br>
-            📱 <span>${e.phone}</span> &nbsp;|&nbsp; 📧 <span>${e.email}</span><br>
-            👥 <span>Team of ${e.teamSize}: ${e.members.join(', ')}</span><br>
-            💰 <span>₹${e.totalFee}</span> &nbsp;|&nbsp; 📄 OD: <span>${e.odUploaded ? '✅' : '❌'}</span>
-          </div>
-          <div class="entry-time">🕐 ${e.time}</div>
-        </div>
-      `).join('');
-        }
-
-        // ── Export CSV ──
-        function exportCSV() {
-            const data = getRegistrations();
-            if (data.length === 0) { showToast('No records to export'); return; }
-
-            const headers = ['ID', 'Name', 'College', 'Phone', 'Email', 'Team Size', 'Members', 'Total Fee', 'OD Uploaded', 'Time'];
-            const rows = data.map(e => [
-                e.id, e.name, e.college, e.phone, e.email,
-                e.teamSize, `"${e.members.join('; ')}"`,
-                e.totalFee, e.odUploaded ? 'Yes' : 'No', e.time
-            ]);
-
-            const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
-            const blob = new Blob([csv], { type: 'text/csv' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `TechTonic_OnSpot_${new Date().toISOString().slice(0, 10)}.csv`;
-            a.click();
-            URL.revokeObjectURL(url);
-            showToast('✓ CSV Downloaded!');
-        }
-
-        // ── Clear All ──
-        function clearAllData() {
-            if (!confirm('⚠️ Delete ALL registrations? This cannot be undone!')) return;
-            if (!confirm('Are you really sure? This will permanently delete all data.')) return;
-            localStorage.removeItem('tt26_onspot');
-            updateRecordCount();
-            renderRecords();
-            showToast('All data cleared');
         }
     </script>
 

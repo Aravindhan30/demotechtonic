@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin — On-Spot Records | TECH TONIC 2K26</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #e8c84a;
+            --card-border: rgba(212, 175, 55, 0.15);
+            --danger: #ff4d4d;
+            --success: #4ade80;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #000;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08), transparent 50%),
+                radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.06), transparent 50%),
+                linear-gradient(135deg, #030305, #0a0a12 25%, #0d0b14 50%, #0a0a0f 75%, #050507);
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px 16px 40px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 30px 20px 18px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            margin-bottom: 16px;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+        }
+
+        .header p {
+            font-size: 0.78rem;
+            color: #777;
+        }
+
+        /* PIN Screen */
+        .pin-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 60vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .pin-screen .lock-icon {
+            font-size: 3rem;
+            margin-bottom: 16px;
+        }
+
+        .pin-screen h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .pin-screen p {
+            font-size: 0.8rem;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .pin-input {
+            width: 200px;
+            padding: 14px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.4);
+            color: var(--gold);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+            border-radius: 12px;
+            outline: none;
+            -webkit-text-security: disc;
+        }
+
+        .pin-input:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.15);
+        }
+
+        .pin-btn {
+            margin-top: 16px;
+            padding: 12px 40px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #000;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .pin-error {
+            color: var(--danger);
+            font-size: 0.78rem;
+            margin-top: 10px;
+            display: none;
+        }
+
+        /* Dashboard */
+        .dashboard {
+            display: none;
+        }
+
+        .stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 14px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: #FFD700;
+            font-weight: 800;
+            text-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        .stat-label {
+            font-size: 0.62rem;
+            color: #777;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .action-row {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 14px;
+        }
+
+        .action-btn {
+            flex: 1;
+            padding: 11px;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            color: var(--gold);
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .action-btn:hover {
+            background: rgba(212, 175, 55, 0.15);
+            border-color: var(--gold);
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.85rem;
+            border-radius: 10px;
+            outline: none;
+            margin-bottom: 14px;
+        }
+
+        .search-bar:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.12);
+        }
+
+        .search-bar::placeholder {
+            color: #555;
+        }
+
+        /* Entry cards */
+        .entry-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            border-radius: 14px;
+            padding: 16px;
+            margin-bottom: 10px;
+            transition: border-color 0.3s;
+            animation: fadeUp 0.3s ease;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .entry-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .entry-name {
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 0.95rem;
+        }
+
+        .entry-id {
+            font-size: 0.62rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 3px 8px;
+            border-radius: 6px;
+            color: var(--gold);
+            font-family: monospace;
+        }
+
+        .entry-details {
+            font-size: 0.78rem;
+            color: #999;
+            line-height: 1.7;
+        }
+
+        .entry-details span {
+            color: #bbb;
+        }
+
+        .entry-time {
+            font-size: 0.68rem;
+            color: #555;
+            margin-top: 6px;
+        }
+
+        .no-records {
+            text-align: center;
+            padding: 40px 20px;
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        .no-records .empty-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        .loading::after {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 30px;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            border-top-color: var(--gold);
+            border-radius: 50%;
+            margin: 12px auto;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--gold);
+            color: #000;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            z-index: 1000;
+            transition: transform 0.3s ease;
+            box-shadow: 0 8px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        ::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+            <h1>📋 ADMIN RECORDS</h1>
+            <p>Tech Tonic 2K26 — On-Spot Registrations</p>
+        </div>
+
+        <!-- PIN Screen -->
+        <div class="pin-screen" id="pinScreen">
+            <div class="lock-icon">🔒</div>
+            <h2>Admin Access</h2>
+            <p>Enter PIN to view records</p>
+            <input type="tel" class="pin-input" id="pinInput" maxlength="4" inputmode="numeric" placeholder="••••"
+                autofocus>
+            <button class="pin-btn" onclick="checkPin()">Unlock</button>
+            <div class="pin-error" id="pinError">Wrong PIN — try again</div>
+        </div>
+
+        <!-- Dashboard -->
+        <div class="dashboard" id="dashboard">
+
+            <div class="stats-row">
+                <div class="stat-card">
+                    <div class="stat-value" id="totalRegs">0</div>
+                    <div class="stat-label">Teams</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalParts">0</div>
+                    <div class="stat-label">Participants</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalFee">₹0</div>
+                    <div class="stat-label">Revenue</div>
+                </div>
+            </div>
+
+            <div class="action-row">
+                <button class="action-btn" onclick="loadRecords()">🔄 Refresh</button>
+                <button class="action-btn" onclick="exportCSV()">📥 Export CSV</button>
+            </div>
+
+            <input type="text" class="search-bar" placeholder="🔍 Search name, college, phone..."
+                oninput="filterRecords(this.value)">
+
+            <div id="recordsList">
+                <div class="loading">Loading records...</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script>
+        // ═══════════════════════════════════════════
+        // ⚠️  PASTE YOUR GOOGLE APPS SCRIPT URL HERE
+        // ═══════════════════════════════════════════
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwjJbTH8DnmO3rZQE50TFST42FWJk38_J-GPoVfAyypePhZOStPY4i6h-8GsJ83AhFLmQ/exec';
+        const ADMIN_PIN = '2026';
+        // ═══════════════════════════════════════════
+
+        let allRecords = [];
+
+        // PIN
+        document.getElementById('pinInput').addEventListener('keyup', e => { if (e.key === 'Enter') checkPin(); });
+
+        function checkPin() {
+            const pin = document.getElementById('pinInput').value;
+            if (pin === ADMIN_PIN) {
+                document.getElementById('pinScreen').style.display = 'none';
+                document.getElementById('dashboard').style.display = 'block';
+                loadRecords();
+            } else {
+                document.getElementById('pinError').style.display = 'block';
+                document.getElementById('pinInput').value = '';
+                document.getElementById('pinInput').focus();
+                setTimeout(() => document.getElementById('pinError').style.display = 'none', 2000);
+            }
+        }
+
+        // Load Records
+        function loadRecords() {
+            document.getElementById('recordsList').innerHTML = '<div class="loading">Loading records...</div>';
+
+            fetch(SCRIPT_URL)
+                .then(r => r.json())
+                .then(data => {
+                    allRecords = data.reverse();  // newest first
+                    updateStats();
+                    renderRecords(allRecords);
+                })
+                .catch(err => {
+                    document.getElementById('recordsList').innerHTML =
+                        '<div class="no-records"><span class="empty-icon">⚠️</span>Failed to load — check script URL<br><small style="color:#555">' + err.message + '</small></div>';
+                });
+        }
+
+        function updateStats() {
+            document.getElementById('totalRegs').textContent = allRecords.length;
+
+            const totalParticipants = allRecords.reduce((sum, r) => sum + (parseInt(r.teamSize) || 1), 0);
+            document.getElementById('totalParts').textContent = totalParticipants;
+
+            const totalRevenue = allRecords.reduce((sum, r) => sum + (parseInt(r.totalFee) || 0), 0);
+            document.getElementById('totalFee').textContent = '₹' + totalRevenue;
+        }
+
+        function renderRecords(records) {
+            const list = document.getElementById('recordsList');
+
+            if (records.length === 0) {
+                list.innerHTML = '<div class="no-records"><span class="empty-icon">📭</span>No records found</div>';
+                return;
+            }
+
+            list.innerHTML = records.map((r, i) => `
+        <div class="entry-card" style="animation-delay: ${i * 0.03}s">
+          <div class="entry-header">
+            <span class="entry-name">${r.name || '—'}</span>
+            <span class="entry-id">${r.id || '—'}</span>
+          </div>
+          <div class="entry-details">
+            🏫 <span>${r.college || '—'}</span><br>
+            📱 <span>${r.phone || '—'}</span> &nbsp;|&nbsp; 📧 <span>${r.email || '—'}</span><br>
+            👥 <span>Team of ${r.teamSize || '?'}: ${r.members || '—'}</span><br>
+            💰 <span>₹${r.totalFee || '0'}</span> &nbsp;|&nbsp; 📄 OD: <span>${r.odUploaded === 'Yes' ? '✅' : '❌'}</span>
+          </div>
+          <div class="entry-time">🕐 ${r.timestamp ? new Date(r.timestamp).toLocaleString('en-IN') : '—'}</div>
+        </div>
+      `).join('');
+        }
+
+        function filterRecords(query) {
+            if (!query) { renderRecords(allRecords); return; }
+            const q = query.toLowerCase();
+            renderRecords(allRecords.filter(r =>
+                (r.name + r.college + r.phone + r.email + r.id + r.members).toLowerCase().includes(q)
+            ));
+        }
+
+        // CSV Export
+        function exportCSV() {
+            if (allRecords.length === 0) { showToast('No records'); return; }
+            const headers = ['ID', 'Name', 'College', 'Phone', 'Email', 'Team Size', 'Members', 'Total Fee', 'OD', 'Timestamp'];
+            const rows = allRecords.map(r => [
+                r.id, `"${r.name}"`, `"${r.college}"`, r.phone, r.email,
+                r.teamSize, `"${r.members}"`, r.totalFee, r.odUploaded,
+                r.timestamp ? new Date(r.timestamp).toLocaleString('en-IN') : ''
+            ]);
+            const csv = [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `TechTonic_OnSpot_${new Date().toISOString().slice(0, 10)}.csv`;
+            a.click();
+            showToast('✓ CSV Downloaded');
+        }
+
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.textContent = msg;
+            t.classList.add('show');
+            setTimeout(() => t.classList.remove('show'), 2000);
+        }
+    </script>
+
+</body>
+
+</html>
