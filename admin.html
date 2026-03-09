@@ -458,20 +458,63 @@
             }
         }
 
-        // Load Records
+        // Load Records — uses callback approach to avoid CORS issues with Google Apps Script
         function loadRecords() {
             document.getElementById('recordsList').innerHTML = '<div class="loading">Loading records...</div>';
 
-            fetch(SCRIPT_URL)
-                .then(r => r.json())
-                .then(data => {
-                    allRecords = data.reverse();  // newest first
+            // Remove any previous callback script
+            const oldScript = document.getElementById('dataScript');
+            if (oldScript) oldScript.remove();
+
+            // Define global callback
+            window.__onDataLoaded = function (data) {
+                try {
+                    allRecords = (Array.isArray(data) ? data : []).reverse();
                     updateStats();
                     renderRecords(allRecords);
+                } catch (e) {
+                    document.getElementById('recordsList').innerHTML =
+                        '<div class="no-records"><span class="empty-icon">⚠️</span>Error parsing data<br><small style="color:#555">' + e.message + '</small></div>';
+                }
+            };
+
+            // Try fetch first, fallback to direct URL open
+            fetch(SCRIPT_URL, { redirect: 'follow' })
+                .then(r => {
+                    if (!r.ok) throw new Error('HTTP ' + r.status);
+                    return r.text();
+                })
+                .then(text => {
+                    try {
+                        const data = JSON.parse(text);
+                        allRecords = (Array.isArray(data) ? data : []).reverse();
+                        updateStats();
+                        renderRecords(allRecords);
+                    } catch (e) {
+                        throw new Error('Invalid JSON response');
+                    }
                 })
                 .catch(err => {
-                    document.getElementById('recordsList').innerHTML =
-                        '<div class="no-records"><span class="empty-icon">⚠️</span>Failed to load — check script URL<br><small style="color:#555">' + err.message + '</small></div>';
+                    console.log('Fetch failed, trying alternative...', err.message);
+                    // Alternative: Use XMLHttpRequest which handles redirects better
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', SCRIPT_URL, true);
+                    xhr.onload = function () {
+                        try {
+                            const data = JSON.parse(xhr.responseText);
+                            allRecords = (Array.isArray(data) ? data : []).reverse();
+                            updateStats();
+                            renderRecords(allRecords);
+                        } catch (e) {
+                            document.getElementById('recordsList').innerHTML =
+                                '<div class="no-records"><span class="empty-icon">⚠️</span>Could not load records<br><small style="color:#555">Make sure the Apps Script is deployed as "Anyone" access</small><br><br><button class="action-btn" onclick="window.open(SCRIPT_URL,\'_blank\')" style="display:inline-block;width:auto;padding:10px 20px;">🔗 Test Script URL</button></div>';
+                        }
+                    };
+                    xhr.onerror = function () {
+                        document.getElementById('recordsList').innerHTML =
+                            '<div class="no-records"><span class="empty-icon">⚠️</span>Network error<br><small style="color:#555">Check your internet connection</small><br><br><button class="action-btn" onclick="loadRecords()" style="display:inline-block;width:auto;padding:10px 20px;">🔄 Retry</button></div>';
+                    };
+                    xhr.send();
                 });
         }
 
