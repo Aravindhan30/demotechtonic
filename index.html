@@ -826,9 +826,25 @@
                     <span>📋</span>
                 </div>
                 <p class="payment-note">
-                    Pay <span class="highlight" id="paymentAmount">₹100</span> for your team.<br>
-                    Take a <span class="highlight">screenshot</span> for verification.
+                    Pay <span class="highlight" id="paymentAmount">₹100</span> for your team.
                 </p>
+            </div>
+
+            <div style="margin-top: 16px; border-top: 1px solid rgba(212,175,55,0.15); padding-top: 16px;">
+                <label
+                    style="display:block;font-size:0.78rem;color:#888;margin-bottom:8px;letter-spacing:0.5px;text-transform:uppercase;font-weight:500;">Payment
+                    Screenshot <span class="required">*</span></label>
+                <div class="upload-area" id="ssUploadArea">
+                    <input type="file" id="ssFile" accept="image/*" onchange="handleSSUpload(this)">
+                    <span class="upload-icon">📸</span>
+                    <p class="upload-text">Tap to upload Payment Screenshot</p>
+                    <p class="upload-hint">Upload clear screenshot with Transaction ID & Amount</p>
+                </div>
+                <div class="file-preview" id="ssFilePreview">
+                    <span>✅</span>
+                    <span id="ssFileName"></span>
+                    <button class="remove-file" onclick="removeSSFile()">✕</button>
+                </div>
             </div>
         </section>
 
@@ -955,7 +971,7 @@
             if (first && first !== document.activeElement) first.value = this.value;
         });
 
-        // File Upload
+        // File Upload - OD Copy
         let uploadedFile = null;
 
         function handleFileUpload(input) {
@@ -973,6 +989,26 @@
             document.getElementById('odFile').value = '';
             document.getElementById('odFilePreview').classList.remove('show');
             document.getElementById('odUploadArea').style.borderColor = '';
+        }
+
+        // File Upload - Payment Screenshot
+        let ssFile = null;
+
+        function handleSSUpload(input) {
+            const file = input.files[0];
+            if (!file) return;
+            if (file.size > 5 * 1024 * 1024) { alert('File must be under 5MB'); input.value = ''; return; }
+            ssFile = file;
+            document.getElementById('ssFileName').textContent = file.name;
+            document.getElementById('ssFilePreview').classList.add('show');
+            document.getElementById('ssUploadArea').style.borderColor = 'rgba(74, 222, 128, 0.4)';
+        }
+
+        function removeSSFile() {
+            ssFile = null;
+            document.getElementById('ssFile').value = '';
+            document.getElementById('ssFilePreview').classList.remove('show');
+            document.getElementById('ssUploadArea').style.borderColor = '';
         }
 
         // Toast
@@ -1052,7 +1088,8 @@
                 teamSize: parseInt(document.getElementById('teamSize').value),
                 members: members,
                 totalFee: currentAmount,
-                odUploaded: !!uploadedFile
+                odUploaded: !!uploadedFile,
+                ssUploaded: !!ssFile
             };
 
             // Send to Google Sheets
@@ -1084,6 +1121,7 @@
             teamMembersSection.innerHTML = '';
             document.getElementById('feeCard').style.display = 'none';
             removeFile();
+            removeSSFile();
             generateQR(100);
             currentAmount = 100;
             document.getElementById('paymentAmount').textContent = '₹100';
