@@ -1,14 +1,14 @@
 :root {
-    --bg-dark: #0f0814;
-    /* Deep Violet Black */
-    --neon-cyan: #ffb703;
-    /* Radiant Amber/Gold */
-    --neon-magenta: #a200ff;
-    /* Electric Violet */
-    --text-main: #fcfcfd;
-    --text-muted: #9e9ea7;
-    --glass-bg: rgba(255, 255, 255, 0.03);
-    --glass-border: rgba(255, 255, 255, 0.08);
+    --bg-dark: #080b12;
+    /* Deep Midnight Navy */
+    --neon-cyan: #00e5ff;
+    /* Vivid Electric Blue */
+    --neon-magenta: #ff0055;
+    /* Hot Crimson */
+    --text-main: #ffffff;
+    --text-muted: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.02);
+    --glass-border: rgba(255, 255, 255, 0.06);
     --font-heading: 'Space Grotesk', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
