@@ -7,7 +7,7 @@ const timer = setInterval(() => {
 
     if (distance < 0) {
         clearInterval(timer);
-        document.getElementById("countdown").innerHTML = "<h2>Conference has started!</h2>";
+        document.getElementById("countdown").innerHTML = "<div class='time-box'><span>Live!</span></div>";
         return;
     }
 
@@ -22,48 +22,38 @@ const timer = setInterval(() => {
     document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
 }, 1000);
 
-// Scroll Reveal Animation
-document.addEventListener('DOMContentLoaded', () => {
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
+// Intersection Observer for Scroll Animations
+document.addEventListener("DOMContentLoaded", () => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in').forEach(element => {
-        observer.observe(element);
+    document.querySelectorAll('.fade-in').forEach((el) => {
+        observer.observe(el);
     });
 
     // Modal Logic
-    const btnCommittees = document.getElementById('btn-committees');
+    const modalBtn = document.getElementById('btn-committees');
     const modalOverlay = document.getElementById('committee-modal');
     const closeModal = document.getElementById('close-modal');
 
-    if (btnCommittees && modalOverlay && closeModal) {
-        // Open Modal
-        btnCommittees.addEventListener('click', () => {
+    if (modalBtn && modalOverlay && closeModal) {
+        const closeModalFunction = () => {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Re-enable scroll
+        };
+
+        modalBtn.addEventListener('click', () => {
             modalOverlay.classList.add('active');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
 
-        // Close Modal
-        const closeModalFunction = () => {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        };
-
         closeModal.addEventListener('click', closeModalFunction);
 
-        // Close on outside click
         modalOverlay.addEventListener('click', (e) => {
             if (e.target === modalOverlay) {
                 closeModalFunction();
