@@ -3,1067 +3,312 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>TECH TONIC 2K26 - Feedback</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RTICCE-2K26 | National Conference</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Poppins:wght@300;400;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;800&family=Inter:wght@300;400;600&display=swap"
         rel="stylesheet">
-
-    <style>
-        :root {
-            --gold: #d4af37;
-            --gold-light: #e8c84a;
-            --gold-dark: #b8962e;
-            --gold-glow: rgba(212, 175, 55, 0.25);
-            --card-bg: rgba(255, 255, 255, 0.035);
-            --card-border: rgba(212, 175, 55, 0.12);
-            --purple: rgba(139, 92, 246, 0.08);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: #000;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            min-height: 100vh;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* ── Animated cosmic background ── */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background:
-                radial-gradient(ellipse at 20% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 20%, rgba(139, 92, 246, 0.07) 0%, transparent 50%),
-                radial-gradient(ellipse at 50% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 50%),
-                linear-gradient(135deg, #030305 0%, #0a0a12 25%, #0d0b14 50%, #0a0a0f 75%, #050507 100%);
-            z-index: -2;
-            animation: bgShift 20s ease-in-out infinite alternate;
-        }
-
-        /* Floating orbs */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 20%;
-            right: -100px;
-            width: 350px;
-            height: 350px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
-            z-index: -1;
-            animation: floatOrb 12s ease-in-out infinite;
-        }
-
-        @keyframes bgShift {
-            0% {
-                background-position: 0% 0%, 100% 0%, 50% 100%, 0% 0%;
-            }
-
-            100% {
-                background-position: 100% 100%, 0% 100%, 50% 0%, 100% 100%;
-            }
-        }
-
-        @keyframes floatOrb {
-
-            0%,
-            100% {
-                transform: translate(0, 0) scale(1);
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: translate(-60px, 80px) scale(1.3);
-                opacity: 0.8;
-            }
-        }
-
-        /* ── Header ── */
-        .header {
-            background: linear-gradient(135deg, rgba(17, 17, 17, 0.95) 0%, rgba(10, 10, 10, 0.95) 100%);
-            border-bottom: 2px solid var(--gold);
-            padding: 22px 20px 18px;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(20px);
-        }
-
-        .header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(16px, 4.5vw, 24px);
-            background: linear-gradient(90deg, var(--gold-dark), var(--gold-light), var(--gold));
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            letter-spacing: 3px;
-            margin-bottom: 4px;
-            animation: titleShimmer 3s linear infinite;
-        }
-
-        @keyframes titleShimmer {
-            0% {
-                background-position: 0% center;
-            }
-
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        .header p {
-            font-size: 11px;
-            color: #888;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-
-        /* ── Main Container ── */
-        .main {
-            max-width: 520px;
-            margin: 0 auto;
-            padding: 30px 18px 50px;
-        }
-
-        /* ── Intro ── */
-        .intro {
-            text-align: center;
-            margin-bottom: 30px;
-            position: relative;
-        }
-
-        .intro-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 16px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 32px;
-            animation: iconPulse 3s ease-in-out infinite;
-        }
-
-        @keyframes iconPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.15);
-            }
-
-            50% {
-                box-shadow: 0 0 0 15px rgba(212, 175, 55, 0);
-            }
-        }
-
-        .intro h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(20px, 5.5vw, 28px);
-            color: var(--gold);
-            letter-spacing: 2px;
-            margin-bottom: 10px;
-        }
-
-        .intro p {
-            font-size: 13px;
-            color: #777;
-            line-height: 1.7;
-        }
-
-        /* ── Decorative divider ── */
-        .divider {
-            width: 80px;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--gold), transparent);
-            margin: 0 auto 28px;
-        }
-
-        /* ── Form Card ── */
-        .form-card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 24px;
-            padding: 30px 24px;
-            backdrop-filter: blur(12px);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Subtle inner glow */
-        .form-card::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 30% 30%, rgba(212, 175, 55, 0.03) 0%, transparent 40%);
-            pointer-events: none;
-        }
-
-        .field {
-            margin-bottom: 22px;
-            position: relative;
-        }
-
-        .field label {
-            display: block;
-            font-size: 11px;
-            color: var(--gold);
-            text-transform: uppercase;
-            letter-spacing: 1.2px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .field input,
-        .field textarea {
-            width: 100%;
-            padding: 14px 18px;
-            background: rgba(255, 255, 255, 0.04);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-bottom: 2px solid rgba(212, 175, 55, 0.25);
-            border-radius: 14px;
-            color: #fff;
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            outline: none;
-            transition: all 0.35s ease;
-            -webkit-appearance: none;
-            appearance: none;
-        }
-
-        .field input:focus,
-        .field textarea:focus {
-            border-color: var(--gold);
-            background: rgba(212, 175, 55, 0.04);
-            box-shadow:
-                0 0 20px rgba(212, 175, 55, 0.08),
-                inset 0 0 20px rgba(212, 175, 55, 0.02);
-        }
-
-        .field input::placeholder,
-        .field textarea::placeholder {
-            color: #444;
-        }
-
-        .field textarea {
-            min-height: 110px;
-            resize: vertical;
-        }
-
-        /* ── Section Label ── */
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 28px 0 18px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.08);
-        }
-
-        .section-label .section-icon {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            flex-shrink: 0;
-        }
-
-        .section-label .section-icon.gold-bg {
-            background: linear-gradient(135deg, rgba(212, 175, 55, 0.12) 0%, rgba(212, 175, 55, 0.05) 100%);
-            border: 1px solid rgba(212, 175, 55, 0.15);
-        }
-
-        .section-label h3 {
-            font-family: 'Cinzel', serif;
-            font-size: 13px;
-            color: var(--gold);
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-        }
-
-        .section-label p {
-            font-size: 11px;
-            color: #555;
-            margin-top: 1px;
-        }
-
-        /* ── Star Rating ── */
-        .rating-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            border-radius: 14px;
-            margin-bottom: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .rating-row:hover {
-            background: rgba(212, 175, 55, 0.03);
-            border-color: rgba(212, 175, 55, 0.1);
-        }
-
-        .rating-row.rated {
-            border-color: rgba(212, 175, 55, 0.15);
-            background: rgba(212, 175, 55, 0.03);
-        }
-
-        .rating-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-shrink: 0;
-        }
-
-        .rating-label .r-emoji {
-            font-size: 20px;
-            width: 28px;
-            text-align: center;
-        }
-
-        .rating-label .r-name {
-            font-size: 13px;
-            font-weight: 500;
-            color: #ccc;
-        }
-
-        .star-rating {
-            display: flex;
-            gap: 4px;
-        }
-
-        .star-rating .star {
-            font-size: 24px;
-            cursor: pointer;
-            transition: transform 0.15s ease, filter 0.15s ease;
-            user-select: none;
-            filter: grayscale(100%) brightness(0.35);
-            line-height: 1;
-        }
-
-        .star-rating .star:hover {
-            transform: scale(1.25);
-        }
-
-        .star-rating .star.active {
-            filter: none;
-            animation: starPop 0.25s ease;
-        }
-
-        @keyframes starPop {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.3);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .rating-value {
-            font-size: 11px;
-            color: #555;
-            text-align: center;
-            margin-top: 2px;
-            min-height: 16px;
-            transition: color 0.3s;
-        }
-
-        /* ── Submit Button ── */
-        .btn-submit {
-            width: 100%;
-            padding: 17px;
-            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 50%, var(--gold) 100%);
-            background-size: 200% auto;
-            border: none;
-            border-radius: 16px;
-            color: #000;
-            font-family: 'Poppins', sans-serif;
-            font-size: 15px;
-            font-weight: 700;
-            letter-spacing: 1.5px;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.3s;
-            margin-top: 12px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 6px 0 var(--gold-dark), 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-submit:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 9px 0 var(--gold-dark), 0 18px 40px rgba(212, 175, 55, 0.25);
-            animation: btnGradient 1.5s linear infinite;
-        }
-
-        @keyframes btnGradient {
-            0% {
-                background-position: 0% center;
-            }
-
-            100% {
-                background-position: 200% center;
-            }
-        }
-
-        .btn-submit:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 var(--gold-dark), 0 6px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-submit:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: 0 6px 0 var(--gold-dark), 0 12px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn-submit::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 50%;
-            height: 100%;
-            background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.5), transparent);
-            transform: skewX(-20deg);
-        }
-
-        .btn-submit:hover::before {
-            animation: shimmer 0.8s forwards;
-        }
-
-        @keyframes shimmer {
-            0% {
-                left: -100%;
-            }
-
-            100% {
-                left: 200%;
-            }
-        }
-
-        /* ── Toast ── */
-        .toast {
-            position: fixed;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%) translateY(100px);
-            padding: 14px 28px;
-            border-radius: 14px;
-            font-size: 14px;
-            font-weight: 600;
-            z-index: 999;
-            opacity: 0;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-            pointer-events: none;
-            backdrop-filter: blur(10px);
-        }
-
-        .toast.show {
-            transform: translateX(-50%) translateY(0);
-            opacity: 1;
-        }
-
-        .toast.success {
-            background: rgba(22, 163, 106, 0.9);
-            color: #fff;
-            border: 1px solid rgba(34, 197, 94, 0.3);
-        }
-
-        .toast.error {
-            background: rgba(220, 38, 38, 0.9);
-            color: #fff;
-            border: 1px solid rgba(239, 68, 68, 0.3);
-        }
-
-        /* ── Success Screen ── */
-        .success-screen {
-            display: none;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        .success-screen.visible {
-            display: block;
-            animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .success-check {
-            width: 90px;
-            height: 90px;
-            margin: 0 auto 20px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.05) 100%);
-            border: 2px solid rgba(34, 197, 94, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 42px;
-            animation: successPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes successPulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.2);
-            }
-
-            50% {
-                box-shadow: 0 0 0 20px rgba(34, 197, 94, 0);
-            }
-        }
-
-        .success-screen h2 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(22px, 6vw, 32px);
-            color: var(--gold);
-            letter-spacing: 3px;
-            margin-bottom: 12px;
-        }
-
-        .success-screen p {
-            color: #777;
-            font-size: 14px;
-            line-height: 1.7;
-            margin-bottom: 30px;
-        }
-
-        .btn-another {
-            display: inline-block;
-            padding: 14px 36px;
-            background: transparent;
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            border-radius: 50px;
-            color: var(--gold);
-            font-family: 'Poppins', sans-serif;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-another:hover {
-            background: rgba(212, 175, 55, 0.12);
-            border-color: var(--gold);
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.12);
-            transform: translateY(-2px);
-        }
-
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ── Loading Spinner ── */
-        .spinner {
-            display: inline-block;
-            width: 18px;
-            height: 18px;
-            border: 2px solid rgba(0, 0, 0, 0.2);
-            border-top-color: #000;
-            border-radius: 50%;
-            animation: spin 0.6s linear infinite;
-            vertical-align: middle;
-            margin-right: 8px;
-        }
-
-        @keyframes spin {
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* ── Progress Dots ── */
-        .progress-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 28px;
-        }
-
-        .progress-dots .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(212, 175, 55, 0.15);
-            transition: all 0.4s ease;
-        }
-
-        .progress-dots .dot.filled {
-            background: var(--gold);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
-        }
-
-        /* ── Mobile ── */
-        @media (max-width: 480px) {
-            .header {
-                padding: 16px 15px 13px;
-            }
-
-            .header h1 {
-                font-size: 16px;
-                letter-spacing: 2px;
-            }
-
-            .main {
-                padding: 22px 14px 40px;
-            }
-
-            .form-card {
-                padding: 24px 16px;
-                border-radius: 20px;
-            }
-
-            .field input,
-            .field textarea {
-                padding: 12px 14px;
-                font-size: 13px;
-            }
-
-            .star-rating .star {
-                font-size: 20px;
-            }
-
-            .rating-row {
-                padding: 12px 12px;
-                flex-wrap: wrap;
-                gap: 8px;
-            }
-
-            .rating-label .r-name {
-                font-size: 12px;
-            }
-
-            .btn-submit {
-                padding: 15px;
-                font-size: 14px;
-            }
-
-            .toast {
-                bottom: 20px;
-                padding: 12px 20px;
-                font-size: 13px;
-                max-width: 92%;
-            }
-
-            .intro-icon {
-                width: 58px;
-                height: 58px;
-                font-size: 26px;
-            }
-
-            .section-label .section-icon {
-                width: 30px;
-                height: 30px;
-                font-size: 15px;
-            }
-        }
-
-        @media (max-width: 360px) {
-            .header h1 {
-                font-size: 14px;
-                letter-spacing: 1px;
-            }
-
-            .form-card {
-                padding: 18px 14px;
-            }
-
-            .star-rating .star {
-                font-size: 18px;
-            }
-
-            .star-rating {
-                gap: 2px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
 
-    <!-- Header -->
-    <div class="header">
-        <h1>TECH TONIC 2K26</h1>
-        <p>✦ Event Feedback ✦</p>
+    <!-- Background Elements -->
+    <div class="bg-glow blob-1"></div>
+    <div class="bg-glow blob-2"></div>
+
+    <nav>
+        <div class="logo">RTICCE<span>-2K26</span></div>
+        <div class="nav-links">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#details" class="nav-link">Dates</a>
+            <a href="#fees" class="nav-link">Fees</a>
+        </div>
+        <a href="https://docs.google.com/forms/d/1HBNi7Iu0iv4t0_avZNhe4Tx9Rg_EWxRgcL5AR8EMwik/viewform?edit_requested=true"
+            target="_blank" class="nav-btn">Register Now</a>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero glass-panel">
+            <h2 class="subtitle">National Conference On</h2>
+            <h1 class="title">Recent Trends in Information and Computer Communication Engineering</h1>
+            <p class="date">April 17th, 2026 | Hybrid Mode</p>
+
+            <div class="organizer-info">
+                <p class="presented-by-label">Organized by</p>
+                <h3 class="department-name">Department of Electronics and Communication Engineering</h3>
+                <h2 class="college-name">P.T. Lee Chengalvaraya Naicker<br>College of Engineering & Technology</h2>
+            </div>
+
+            <div class="countdown" id="countdown">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <label>Days</label>
+                </div>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <label>Hours</label>
+                </div>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <label>Minutes</label>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <label>Seconds</label>
+                </div>
+            </div>
+
+            <div class="cta-group">
+                <a href="https://docs.google.com/forms/d/1HBNi7Iu0iv4t0_avZNhe4Tx9Rg_EWxRgcL5AR8EMwik/viewform?edit_requested=true"
+                    target="_blank" class="glow-on-hover primary-cta">Secure Your Spot</a>
+                <button class="secondary-cta" id="btn-committees" style="cursor: pointer;">Institution &
+                    Committees</button>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <a href="#about" class="scroll-indicator">
+                <span>Explore More</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+            </a>
+        </section>
+
+        <!-- About & Fields Section -->
+        <section id="about" class="about-section fade-in">
+            <h2 class="section-title">About RTICCE-2K26</h2>
+            <div class="about-grid">
+                <div class="about-card glass-panel">
+                    <h3 class="sub-section-title">About Conference</h3>
+                    <p><strong>RTICCE-2K26</strong> is a premier global platform uniting researchers, academicians,
+                        industry leaders, and students.</p>
+                    <p style="margin-top: 1rem;">Join us to exchange groundbreaking advancements in communication
+                        engineering, foster high-impact collaborations, and tackle the most pressing challenges in
+                        emerging tech innovations.</p>
+                </div>
+                <div class="about-card glass-panel">
+                    <h3 class="sub-section-title">Emerging Fields of Interest</h3>
+                    <div class="tags-container">
+                        <span class="tag">DSP</span>
+                        <span class="tag">Nanotech</span>
+                        <span class="tag">Microwave & Optical Comm</span>
+                        <span class="tag">Embedded Systems</span>
+                        <span class="tag">5G/6G Design</span>
+                        <span class="tag">IoT & Cloud Computing</span>
+                        <span class="tag">Soft Computing</span>
+                        <span class="tag">ML & Deep Learning</span>
+                        <span class="tag">Mechatronics & Robotics</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Important Dates -->
+        <section id="details" class="dates-section fade-in">
+            <h2 class="section-title">Important Dates</h2>
+            <div class="timeline">
+                <div class="timeline-item glass-card card-glow">
+                    <h3>Abstract Submission</h3>
+                    <p class="date-highlight">03.04.2026</p>
+                </div>
+                <div class="timeline-item glass-card card-glow">
+                    <h3>Acceptance Notification</h3>
+                    <p class="date-highlight">08.04.2026</p>
+                </div>
+                <div class="timeline-item glass-card card-glow">
+                    <h3>Full Paper Submission</h3>
+                    <p class="date-highlight">11.04.2026</p>
+                </div>
+                <div class="timeline-item glass-card card-glow accent">
+                    <h3>Conference Date</h3>
+                    <p class="date-highlight">17.04.2026</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Pricing -->
+        <section id="fees" class="pricing-section fade-in">
+            <h2 class="section-title">Registration Fees</h2>
+            <div class="pricing-cards">
+                <div class="price-card glass-card hover-lift">
+                    <h3>UG/PG Students</h3>
+                    <p class="limit">(Limited to 4 per batch)</p>
+                    <div class="price">₹400<span>/batch</span></div>
+                </div>
+                <div class="price-card glass-card hover-lift">
+                    <h3>Research Scholar/Faculty</h3>
+                    <div class="price">₹500</div>
+                </div>
+                <div class="price-card glass-card hover-lift accent-card">
+                    <h3>Industry Delegates</h3>
+                    <div class="price">₹1000</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Details & Contact -->
+        <section class="info-section fade-in">
+            <div class="info-grid">
+                <div class="info-card glass-panel">
+                    <h3>Paper Submission</h3>
+                    <p>RTICCE-2K26 invites the author to submit full length paper with peer reviewed in standard Times
+                        New Romen format. Paper should reflect with title and author details. All contribution should be
+                        high quality and original and not published elsewhere.</p>
+                    <p style="margin-top: 1rem; margin-bottom: 0.5rem;">Submit soft copy to:</p>
+                    <a href="mailto:rticce2k26cse@ptleecncet.com" class="email-link">rticce2k26cse@ptleecncet.com</a>
+                    <p class="note">Selected and accepted papers will be published as books of abstract with ISBN
+                        number.</p>
+                </div>
+                <div class="info-card glass-panel">
+                    <h3>Contact & Venue</h3>
+                    <p><strong>P.T. Lee Chengalvaraya Naicker College of Engineering & Technology</strong></p>
+                    <p>Oovery, Velyur Post, Kanchipuram 631 502</p>
+                    <div class="contact-numbers">
+                        <p>Dr. A. Karthikeyan: 7010733566</p>
+                        <p>Dr. S. Parasuraman: 9787621854</p>
+                        <p>Dr. S. Yogeeswaran: 8610987704</p>
+                        <p>Dr. R. Mamallan: 9750227722</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 RTICCE. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Leadership Modal -->
+    <div class="modal-overlay" id="committee-modal">
+        <div class="modal-content glass-panel">
+            <button class="close-modal" id="close-modal">&times;</button>
+            <h2 class="modal-title">Institution & Committees</h2>
+            <div class="modal-body">
+
+                <div class="modal-section">
+                    <h3>Institution Profile</h3>
+                    <h4>About Trust</h4>
+                    <p>Vallal P.T. Lee Chengalvaraya Naicker, the illustrious founder of this institution, was born in
+                        the year 1829. The trust was started in the year 1874. In the name of P.T Lee Chengalvaraya
+                        Naicker conceived by benevolent man mainly for the purpose to imparting free education and free
+                        medical services for economically weaker and downtrodden society. As per the order of Hon'ble
+                        High Court of Madras, the trust started functioning as a separate entity from the year 1996. Our
+                        trust is being administrated by a team of nine eminent trustees drawn from different walks of
+                        life and who were holding very high position in the past. Presently, the trust board is headed
+                        by Hon'ble Justice P. Kalaiyarasan, former Judge, High Court of Madras as Chairman and other
+                        trustees duly appointed by Government of Tamil Nadu.</p>
+
+                    <h4>About College</h4>
+                    <p>P.T. Lee Chengalvaraya Naicker College of Engineering & Technology is established in the year of
+                        2001. The College is literally situated in Oovery, Kanchipuram, 8 kms from Kanchipuram and 18
+                        kms from Arakkonam. The College is a private, self-financed Institution, affiliated to Anna
+                        University, approved by AICTE. The College is a unit of P.T. Lee Chengalvaraya Naicker Trust,
+                        Vepery, Chennai – 600 007. Our College Provides Six Engineering Courses, such as B.E-ECE, MECH,
+                        EEE, CSE, B. Tech-IT and AI & DS.</p>
+
+                    <h4>About Department</h4>
+                    <p>The Department of Electronics and Communication Engineering is the first Program of this college.
+                        The Department is fully equipped with state-of-the-art laboratories such as Digital Signal
+                        Processing, VLSI, Optical & Microwave and RF Communication and IOT lab. Our department have four
+                        Doctorates and three faculty members on pursuing research. Also, our department is equipped with
+                        Tanner Licensed software. It aims to enrich the knowledge and skills of the students on the
+                        basic concepts and theories that will equip them in their professional work involving analysis,
+                        systems implementation, operation, production, and maintenance of the various applications in
+                        the field of Electronics and Communications Engineering.</p>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Leadership</h3>
+                    <div class="committee-list">
+                        <h4>Hon'ble Justice Thiru P. Kalaiyarasan</h4>
+                        <p>Chairman, P.T. Lee Chengalvaraya Naicker Trust, Former Judge, High Court of Madras.</p>
+
+                        <h4>Secretary</h4>
+                        <p>Thiru.M. Sambasivam B.Sc., B.L., Former District Judge.</p>
+
+                        <h4>Director</h4>
+                        <p>Dr.M. Arularasu M.E., Ph.D., Former Additional Director, DOTE, Chennai.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Patrons</h3>
+                    <ul class="bullet-list">
+                        <li>Thiru.V. Chandrasekaran IAS., (R)</li>
+                        <li>Thiru.S. Sathapillai B.A., B.L.</li>
+                        <li>Dr.R. Kannaiyan M.D.</li>
+                        <li>Tmt.S. Renuka M.A., B.Ed.</li>
+                        <li>Er.H. Venkatesh M.E.</li>
+                        <li>Dr.B. Aristatile M.Sc., M.Phil., Ph.D.</li>
+                        <li>Thiru.M. Rajendiran M.Com.</li>
+                        <li>Thiru.M.N. Vijayasundaram M.A.</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Advisors</h3>
+                    <div class="committee-list">
+                        <h4>Educational Advisor</h4>
+                        <p>Dr.K.Minraj Ph.D., Former Dean, UNOM and Member Secretary, TNSCHE</p>
+                        <h4>Technical Advisor</h4>
+                        <p>Er.K. Jaganathan M.Tech., FIE, FIWWA, Former Engineering Director and Chief Engineer, CMWSSB,
+                            Chennai.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Convenors & Co-Convenors</h3>
+                    <div class="committee-list">
+                        <h4>Convenors</h4>
+                        <p>Dr.P. Palanisamy M.E., Ph.D., Principal</p>
+                        <h4>Co-Convenors</h4>
+                        <p>Dr.A.Karthikayen HOD/ECE</p>
+                        <p>Dr.S. Parasuraman Asso.Prof/ECE</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Advisory Committee</h3>
+                    <ul class="bullet-list">
+                        <li>Dr.V. Thirunavukkarasu Principal and Professor, Govt Engg College, Bargur</li>
+                        <li>Dr.R. Ramesh Prof/EEE, AU, Chennai</li>
+                        <li>Dr.S.Chitrakala Prof/CSE, AU, Chennai</li>
+                        <li>Dr. M.A. Bhagyaveni Prof/ECE, AU Chennai</li>
+                        <li>Dr. M. Manikandan Prof/ECE MIT Campus</li>
+                        <li>Dr.M.Manimegalai Asso.Prof/ECE TPGIT</li>
+                        <li>Dr.V. Chithambaram Prof/S&H, REC, Chennai</li>
+                        <li>Dr.D.Saravanan Prof/S&H, KVCET</li>
+                        <li>Dr.S.Selvakumar raja. Principal, KITSW, Telangana</li>
+                        <li>Mr.Vigneswaran Jayabal, Asst.Vice President, Information Security in Singapore.</li>
+                        <li>Dr. Udhayakumar Malaysia</li>
+                    </ul>
+                </div>
+
+                <div class="modal-section">
+                    <h3>Organizing Committees</h3>
+                    <ul class="bullet-list">
+                        <li>Dr.S. Yogeeswaran AP/ECE</li>
+                        <li>Mr.S. Prabakaran AP/ECE</li>
+                        <li>Mr.S. Mohanraj AP/ECE</li>
+                        <li>Dr.R. Mamallan AP/ECE</li>
+                        <li>Mr.P. Kamalakkannan AP/ECE</li>
+                        <li>Mrs.A. Sujitha AP/ECE</li>
+                        <li>Mrs.S.Menaka AP/ECE</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <!-- Main -->
-    <div class="main" id="formSection">
-
-        <!-- Intro -->
-        <div class="intro">
-            <div class="intro-icon">💬</div>
-            <h2>Share Your Experience</h2>
-            <p>Your feedback helps us create even better events. Rate your TECH TONIC 2K26 experience below!</p>
-        </div>
-
-        <div class="divider"></div>
-
-        <!-- Progress Dots -->
-        <div class="progress-dots" id="progressDots">
-            <div class="dot" id="dot0"></div>
-            <div class="dot" id="dot1"></div>
-            <div class="dot" id="dot2"></div>
-            <div class="dot" id="dot3"></div>
-            <div class="dot" id="dot4"></div>
-            <div class="dot" id="dot5"></div>
-            <div class="dot" id="dot6"></div>
-            <div class="dot" id="dot7"></div>
-        </div>
-
-        <!-- Form Card -->
-        <div class="form-card">
-            <form id="feedbackForm" onsubmit="submitFeedback(event)">
-
-                <!-- Name -->
-                <div class="field">
-                    <label>Your Name</label>
-                    <input type="text" id="fname" placeholder="Enter your full name" required
-                        oninput="updateProgress()">
-                </div>
-
-                <!-- College -->
-                <div class="field">
-                    <label>College</label>
-                    <input type="text" id="fcollege" placeholder="Enter your college name" required
-                        oninput="updateProgress()">
-                </div>
-
-                <!-- Ratings Section -->
-                <div class="section-label">
-                    <div class="section-icon gold-bg">⭐</div>
-                    <div>
-                        <h3>Rate Your Experience</h3>
-                        <p>Tap the stars for each category</p>
-                    </div>
-                </div>
-
-                <!-- Rating: Event -->
-                <div class="rating-row" id="row_event">
-                    <div class="rating-label">
-                        <span class="r-emoji">🎪</span>
-                        <span class="r-name">Event</span>
-                    </div>
-                    <div>
-                        <div class="star-rating" data-group="event">
-                            <span class="star" data-value="1">⭐</span>
-                            <span class="star" data-value="2">⭐</span>
-                            <span class="star" data-value="3">⭐</span>
-                            <span class="star" data-value="4">⭐</span>
-                            <span class="star" data-value="5">⭐</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rating: Food -->
-                <div class="rating-row" id="row_food">
-                    <div class="rating-label">
-                        <span class="r-emoji">🍽️</span>
-                        <span class="r-name">Food</span>
-                    </div>
-                    <div>
-                        <div class="star-rating" data-group="food">
-                            <span class="star" data-value="1">⭐</span>
-                            <span class="star" data-value="2">⭐</span>
-                            <span class="star" data-value="3">⭐</span>
-                            <span class="star" data-value="4">⭐</span>
-                            <span class="star" data-value="5">⭐</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rating: Coordinators -->
-                <div class="rating-row" id="row_coordinators">
-                    <div class="rating-label">
-                        <span class="r-emoji">👨‍💼</span>
-                        <span class="r-name">Coordinators</span>
-                    </div>
-                    <div>
-                        <div class="star-rating" data-group="coordinators">
-                            <span class="star" data-value="1">⭐</span>
-                            <span class="star" data-value="2">⭐</span>
-                            <span class="star" data-value="3">⭐</span>
-                            <span class="star" data-value="4">⭐</span>
-                            <span class="star" data-value="5">⭐</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rating: Students -->
-                <div class="rating-row" id="row_students">
-                    <div class="rating-label">
-                        <span class="r-emoji">👥</span>
-                        <span class="r-name">Students</span>
-                    </div>
-                    <div>
-                        <div class="star-rating" data-group="students">
-                            <span class="star" data-value="1">⭐</span>
-                            <span class="star" data-value="2">⭐</span>
-                            <span class="star" data-value="3">⭐</span>
-                            <span class="star" data-value="4">⭐</span>
-                            <span class="star" data-value="5">⭐</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rating: Registration -->
-                <div class="rating-row" id="row_registration">
-                    <div class="rating-label">
-                        <span class="r-emoji">📝</span>
-                        <span class="r-name">Registration</span>
-                    </div>
-                    <div>
-                        <div class="star-rating" data-group="registration">
-                            <span class="star" data-value="1">⭐</span>
-                            <span class="star" data-value="2">⭐</span>
-                            <span class="star" data-value="3">⭐</span>
-                            <span class="star" data-value="4">⭐</span>
-                            <span class="star" data-value="5">⭐</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Rating: Overall -->
-                <div class="rating-row" id="row_overall">
-                    <div class="rating-label">
-                        <span class="r-emoji">🎯</span>
-                        <span class="r-name">Overall</span>
-                    </div>
-                    <div>
-                        <div class="star-rating" data-group="overall">
-                            <span class="star" data-value="1">⭐</span>
-                            <span class="star" data-value="2">⭐</span>
-                            <span class="star" data-value="3">⭐</span>
-                            <span class="star" data-value="4">⭐</span>
-                            <span class="star" data-value="5">⭐</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feedback Section -->
-                <div class="section-label" style="margin-top:30px;">
-                    <div class="section-icon gold-bg">💭</div>
-                    <div>
-                        <h3>Comments</h3>
-                        <p>Tell us more about your experience</p>
-                    </div>
-                </div>
-
-                <!-- Feedback Text -->
-                <div class="field">
-                    <textarea id="fcomment" placeholder="What did you love? What can we improve? Share your thoughts..."
-                        required oninput="updateProgress()"></textarea>
-                </div>
-
-                <!-- Submit -->
-                <button type="submit" class="btn-submit" id="submitBtn">✨ SUBMIT FEEDBACK</button>
-
-            </form>
-        </div>
-    </div>
-
-    <!-- Success Screen -->
-    <div class="main success-screen" id="successSection">
-        <div class="success-check">🎉</div>
-        <h2>Thank You!</h2>
-        <p>Your feedback has been submitted successfully.<br>We appreciate you taking the time to help us improve!</p>
-        <button class="btn-another" onclick="resetForm()">Submit Another Feedback</button>
-    </div>
-
-    <!-- Toast -->
-    <div class="toast" id="toast"></div>
-
-    <!-- Hidden iframe for Google Form submission -->
-    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
-
-    <script>
-
-        /* ══════════════════════════════════════
-           GOOGLE FORMS INTEGRATION
-           ══════════════════════════════════════ */
-        const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLScy-P8UuLKaMHPGQ-Vm_-AglH3qPBynLy7fQbpPV6csmSXZ2A/formResponse";
-
-        /* Google Form entry IDs */
-        const ENTRY = {
-            name: "entry.1192310388",
-            college: "entry.1064607591",
-            event: "entry.1465993310",
-            food: "entry.2108746661",
-            coordinators: "entry.2058766139",
-            students: "entry.1673776753",
-            registration: "entry.1236345438",
-            overall: "entry.341442054",
-            feedback: "entry.1361490552"
-        };
-
-        /* Rating groups */
-        const ratingGroups = ["event", "food", "coordinators", "students", "registration", "overall"];
-        const ratings = {};
-        ratingGroups.forEach(g => ratings[g] = 0);
-
-        /* ── Star Rating Logic ── */
-        document.querySelectorAll(".star-rating").forEach(container => {
-            const group = container.dataset.group;
-            const starsInGroup = container.querySelectorAll(".star");
-            const row = document.getElementById("row_" + group);
-
-            starsInGroup.forEach(star => {
-                star.addEventListener("click", () => {
-                    ratings[group] = parseInt(star.dataset.value);
-                    renderStars(starsInGroup, ratings[group]);
-                    if (row) row.classList.add("rated");
-                    updateProgress();
-                });
-
-                star.addEventListener("mouseenter", () => {
-                    const val = parseInt(star.dataset.value);
-                    starsInGroup.forEach((s, i) => s.classList.toggle("active", i < val));
-                });
-            });
-
-            container.addEventListener("mouseleave", () => {
-                renderStars(starsInGroup, ratings[group]);
-            });
-        });
-
-        function renderStars(starsNodeList, value) {
-            starsNodeList.forEach((s, i) => s.classList.toggle("active", i < value));
-        }
-
-        /* ── Progress Dots ── */
-        function updateProgress() {
-            const checks = [
-                document.getElementById("fname").value.trim().length > 0,
-                document.getElementById("fcollege").value.trim().length > 0,
-                ...ratingGroups.map(g => ratings[g] > 0),
-            ];
-            checks.forEach((filled, i) => {
-                const dot = document.getElementById("dot" + i);
-                if (dot) dot.classList.toggle("filled", filled);
-            });
-        }
-
-        /* ── Toast ── */
-        function showToast(msg, type) {
-            const toast = document.getElementById("toast");
-            toast.textContent = msg;
-            toast.className = "toast " + type + " show";
-            setTimeout(() => { toast.className = "toast"; }, 3500);
-        }
-
-        /* ── Submit to Google Forms ── */
-        function submitFeedback(e) {
-            e.preventDefault();
-
-            const missing = ratingGroups.filter(g => ratings[g] === 0);
-            if (missing.length > 0) {
-                showToast("⭐ Please rate all categories", "error");
-                missing.forEach(g => {
-                    const row = document.getElementById("row_" + g);
-                    if (row) {
-                        row.style.borderColor = "rgba(239, 68, 68, 0.4)";
-                        setTimeout(() => row.style.borderColor = "", 2000);
-                    }
-                });
-                return;
-            }
-
-            const btn = document.getElementById("submitBtn");
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner"></span>Submitting...';
-
-            /* Build a hidden form and submit to Google Forms via iframe */
-            const form = document.createElement("form");
-            form.method = "POST";
-            form.action = GOOGLE_FORM_URL;
-            form.target = "hidden_iframe";
-
-            const data = {
-                [ENTRY.name]: document.getElementById("fname").value.trim(),
-                [ENTRY.college]: document.getElementById("fcollege").value.trim(),
-                [ENTRY.event]: ratings.event,
-                [ENTRY.food]: ratings.food,
-                [ENTRY.coordinators]: ratings.coordinators,
-                [ENTRY.students]: ratings.students,
-                [ENTRY.registration]: ratings.registration,
-                [ENTRY.overall]: ratings.overall,
-                [ENTRY.feedback]: document.getElementById("fcomment").value.trim()
-            };
-
-            for (const [key, val] of Object.entries(data)) {
-                const input = document.createElement("input");
-                input.type = "hidden";
-                input.name = key;
-                input.value = val;
-                form.appendChild(input);
-            }
-
-            document.body.appendChild(form);
-            form.submit();
-            document.body.removeChild(form);
-
-            /* Show success after a short delay */
-            setTimeout(() => {
-                document.getElementById("formSection").style.display = "none";
-                document.getElementById("successSection").classList.add("visible");
-            }, 1000);
-        }
-
-        /* ── Reset ── */
-        function resetForm() {
-            document.getElementById("feedbackForm").reset();
-            ratingGroups.forEach(g => {
-                ratings[g] = 0;
-                const container = document.querySelector(`[data-group="${g}"]`);
-                if (container) renderStars(container.querySelectorAll(".star"), 0);
-                const row = document.getElementById("row_" + g);
-                if (row) row.classList.remove("rated");
-            });
-            updateProgress();
-            document.getElementById("successSection").classList.remove("visible");
-            document.getElementById("formSection").style.display = "block";
-        }
-
-    </script>
-
+    <script src="script.js"></script>
 </body>
 
 </html>
